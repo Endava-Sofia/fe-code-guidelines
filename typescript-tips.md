@@ -25,7 +25,7 @@ interface SelectableItem {
   selected: boolean;
 }
 
-// ✔️
+// ✅
 interface SelectableItem extends Item {
   selected: boolean;
 }
@@ -50,33 +50,34 @@ interface User {
 }
 
 type UtilTest1 = Partial<User>;
-/* result: the same type but every field is optional (the opposite utility type is Required<T>)
-{
+/* result: the same type but every field is optional
+(the opposite utility type is Required<T>) */
+interface Result1 {
   uuid?: string;
   firstName?: string;
   lastName?: string;
   email?: string;
 }
-*/
 
 type UtilTest2 = Omit<User, 'firstname' | 'lastName'>;
-/* result: the same type but with omited properties
-{
+/* result: the same type but with omited properties */
+interface Result2 {
   uuid: string;
   email?: string;
 }
-*/
+
 
 // Creating types from function types
 
 type SomeFunction = (arg1: string, arg2: number) => boolean;
 
 type UtilTest3 = Parameters<SomeFunction>
-/* result: a tuple with the parameters of the function
-[arg1: string, arg2: number]
-*/
+/* result: a tuple with the parameters of the function */
+type Result3 = [arg1: string, arg2: number]
+
 type UtilTest4 = ReturnType<SomeFunction>
-/* result: the return type of the function - boolean*/
+/* result: the return type of the function */
+type Result4 = boolean;
 
 ```
 
