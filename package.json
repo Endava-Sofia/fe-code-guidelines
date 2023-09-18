@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "markdownlint guidelines/**/*.md",
+    "lint:fix": "npm run lint -- -f"
   },
   "repository": {
     "type": "git",
@@ -16,6 +17,7 @@
   },
   "homepage": "https://github.com/Endava-Sofia/fe-code-guidelines#readme",
   "devDependencies": {
-    "markdownlint": "^0.31.1"
+    "markdownlint": "^0.31.1",
+    "markdownlint-cli": "^0.36.0"
   }
 }
