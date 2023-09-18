@@ -1,0 +1,23 @@
+{
+  "name": "fe-code-guidelines",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "lint": "markdownlint guidelines/**/*.md",
+    "lint:fix": "npm run lint -- -f"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Endava-Sofia/fe-code-guidelines.git"
+  },
+  "author": "Endava Sofia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Endava-Sofia/fe-code-guidelines/issues"
+  },
+  "homepage": "https://github.com/Endava-Sofia/fe-code-guidelines#readme",
+  "devDependencies": {
+    "markdownlint": "^0.31.1",
+    "markdownlint-cli": "^0.36.0"
+  }
+}
