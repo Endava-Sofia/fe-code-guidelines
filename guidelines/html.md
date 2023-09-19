@@ -21,7 +21,7 @@ The correct document type for HTML is:
 If you want consistency with lower case tags, you can use:
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 ```
 
 <br/>
@@ -59,7 +59,13 @@ We recommend closing all HTML elements:
   <p>This is a paragraph.</p>
 </section>
 ```
-
+Or self-closing tags
+```html
+<input />
+<img />
+<hr />
+etc.
+```
 <br/>
 
 ## Close Empty HTML Elements
@@ -76,7 +82,7 @@ This is allowed:
 This is also allowed:
 
 ```html
-<meta charset="utf-8" />
+<meta charset="utf-8">
 ```
 
 The slash (/) is required in XHTML and XML.
@@ -320,7 +326,7 @@ Allowed: <meta charset="utf-8" />
 ```
 
 ```html
-Also Allowed: <meta charset="utf-8" />
+Also Allowed: <meta charset="utf-8">
 ```
 
 If you expect XML/XHTML software to access your page, keep the closing slash (/), because it is required in XML and XHTML.
