@@ -123,13 +123,13 @@ Good:
 
 ```html
 Bad:
-<table class="striped"></table>
+<table class=striped></table>
 ```
 
 ```html
 Very bad: This will not work, because the value contains spaces:
 
-<table class="table" striped></table>
+<table class=table striped></table>
 ```
 
 <br/>
@@ -161,7 +161,7 @@ Good: <link rel="stylesheet" href="styles.css" />
 ```
 
 ```html
-Bad: <link rel="stylesheet" href="styles.css" />
+Bad: <link rel = "stylesheet"   href = " styles.css" />
 ```
 
 <br/>
@@ -203,13 +203,13 @@ Good:
 ```html
 Bad:
 <body>
-  <h1>Famous Cities</h1>
-  <h2>Tokyo</h2>
-  <p>Tokyo is the capital of Japan, the center of the Greater Tokyo Area, and the most populous metropolitan area in the world.</p>
-  <h2>London</h2>
-  <p>London is the capital city of England. It is the most populous city in the United Kingdom.</p>
-  <h2>Paris</h2>
-  <p>Paris is the capital of France. The Paris area is one of the largest population centers in Europe.</p>
+<h1>Famous Cities</h1>
+<h2>Tokyo</h2>
+<p>Tokyo is the capital of Japan, the center of the Greater Tokyo Area, and the most populous metropolitan area in the world.</p>
+<h2>London</h2>
+<p>London is the capital city of England. It is the most populous city in the United Kingdom.</p>
+<h2>Paris</h2>
+<p>Paris is the capital of France. The Paris area is one of the largest population centers in Europe.</p>
 </body>
 ```
 
