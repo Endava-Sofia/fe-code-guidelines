@@ -228,4 +228,274 @@ It's also a good idea to use `Array#includes` method when you have an `if` condi
 
 It is a way to write asynchronous code in JavaScript/TypeScript. Promises are one of the best additions to JavaScript because they make handling async code so much easier. Going from callbacks to promises feels like a massive upgrade, but there is something even better than promises and that is async/await. Async/await is an alternative syntax for promises that makes reading/writing async code even easier.
 
+Bad:
+
+```javascript
+function setTimeoutPromise(delay) {
+  return new Promise((resolve, reject) => {
+    if (delay < 0) return reject("Delay must be greater than 0")
+
+    setTimeout(() => {
+      resolve(`You waited ${delay} milliseconds`)
+    }, delay)
+  })
+}
+
+setTimeoutPromise(250)
+  .then(msg => {
+    console.log(msg)
+    console.log("First Timeout")
+    return setTimeoutPromise(500)
+  })
+  .then(msg => {
+    console.log(msg)
+    console.log("Second Timeout")
+  })
+// Output:
+// You waited 250 milliseconds
+// First Timeout
+// You waited 500 milliseconds
+// Second Timeout
+```
+
+Good:
+
+```javascript
+function setTimeoutPromise(delay) {
+  return new Promise((resolve, reject) => {
+    if (delay < 0) return reject("Delay must be greater than 0")
+
+    setTimeout(() => {
+      resolve(`You waited ${delay} milliseconds`)
+    }, delay)
+  })
+}
+
+doStuff()
+async function doStuff() {
+  const msg1 = await setTimeoutPromise(250)
+  console.log(msg1)
+  console.log("First Timeout")
+
+  const msg2 = await setTimeoutPromise(500)
+  console.log(msg2)
+  console.log("Second Timeout")
+}
+// Output:
+// You waited 250 milliseconds
+// First Timeout
+// You waited 500 milliseconds
+// Second Timeout
+```
+
+> This preference can be enforced with an existing ESLint rule in your project
+
+## Prefer object literal `property value shorthand` syntax
+
+ECMAScript 6 provides a concise form for defining object literal methods and properties. This syntax can make defining complex object literals much cleaner.
+
+Bad:
+
+```javascript
+// properties
+var foo = {
+    x: x,
+    y: y,
+    z: z,
+};
+
+// methods
+var foo = {
+    a: function() {},
+    b: function() {}
+};
+```
+
+Good:
+
+```javascript
+// properties
+var foo = {x, y, z};
+
+// methods
+var foo = {
+    a() {},
+    b() {}
+};
+```
+
+> This preference can be enforced with an existing ESLint rule in your project
+
+## Prefer using the newest ES string, array and object methods
+
+This is recommended to do as long as these methods don't require additional polyfill scripts for the modern browsers that are to be supported - Safari, Edge, Firefox, Chrome for example.
+
+## Prefer using `for...of` and `for...in` loops where appropriate
+
+Many developers default to writing `for (let i = 0; i < ...` loops to iterate over arrays. However, in many of those arrays, the loop iterator variable (e.g. `i`) is only used to access the respective element of the array. In those cases, a `for-of` loop is easier to read and write.
+
+Bad:
+
+```javascript
+declare const array: string[];
+
+for (let i = 0; i < array.length; i++) {
+  console.log(array[i]);
+}
+```
+
+Good:
+
+```javascript
+declare const array: string[];
+
+for (const x of array) {
+  console.log(x);
+}
+
+for (let i = 0; i < array.length; i++) {
+  // i is used, so for-of could not be used.
+  console.log(i, array[i]);
+}
+```
+
+The `for...in` statement iterates over all enumerable string properties of an object (ignoring properties keyed by symbols), including inherited enumerable properties.
+
+Caveats of using `for...in`:
+
+If you only want to consider properties attached to the object itself, and not its prototypes, you can use one of the following techniques:
+
+```javascript
+Object.keys(myObject)
+Object.getOwnPropertyNames(myObject)
+```
+
+`Object.keys` will return a list of enumerable own string properties, while `Object.getOwnPropertyNames` will also contain non-enumerable ones.
+
+Many JavaScript style guides and linters recommend against the use of `for...in`, because it iterates over the entire prototype chain which is rarely what one wants, and may be a confusion with the more widely-used `for...of` loop. `for...in` is most practically used for debugging purposes, being an easy way to check the properties of an object (by outputting to the console or otherwise). In situations where objects are used as ad hoc key-value pairs, `for...in` allows you check if any of those keys hold a particular value.
+
+> This preference can be enforced with an existing ESLint rule in your project
+
+## Prefer using `filter`, `map`, `reduce`, etc. but not `forEach`
+
+`forEach` has known pitfalls that make it unsuitable in some situations that can be properly handled with `for` or `for..of`:
+
+- callback function creates new context (can be addressed with arrow function)
+- doesn't support iterators
+- doesn't support generator `yield` and `async..await`
+- doesn't provide a proper way to terminate a loop early with `break`
+- it isn't immutable by nature. New value isn't provided for you automatically (like with `reduce` or `map`).
+
+## Perefer using `arrow functions` everywhere where it’s applicable
+
+Arrow functions can be an attractive alternative to function expressions for callbacks or function arguments.
+
+For example, arrow functions are automatically bound to their surrounding scope/context. This provides an alternative to the pre-ES6 standard of explicitly binding function expressions to achieve similar behavior.
+
+Additionally, arrow functions are:
+
+- less verbose, and easier to reason about.
+- bound lexically regardless of where or when they are invoked.
+
+Bad:
+
+```javascript
+foo(function(a) { return a; });
+
+foo(function() { return this.a; }.bind(this));
+```
+
+Good:
+
+```javascript
+foo(a => a);
+
+foo(() => this.a);
+```
+
+> This preference can be enforced with an existing ESLint rule in your project
+
+## Prefer using rest parameters
+
+There are rest parameters in ES2015. We can use that feature for variadic functions instead of the arguments variable.
+
+Bad:
+
+```javascript
+function foo() {
+    console.log(arguments);
+}
+
+function foo(action) {
+    var args = Array.prototype.slice.call(arguments, 1);
+    action.apply(null, args);
+}
+
+function foo(action) {
+    var args = [].slice.call(arguments, 1);
+    action.apply(null, args);
+}
+```
+
+Good:
+
+```javascript
+function foo(...args) {
+    console.log(args);
+}
+
+function foo(action, ...args) {
+    action.apply(null, args); // or `action(...args)`, related to the `prefer-spread` rule.
+}
+
+// Note: the implicit arguments can be overwritten.
+function foo(arguments) {
+    console.log(arguments); // This is the first argument.
+}
+function foo() {
+    var arguments = 0;
+    console.log(arguments); // This is a local variable.
+}
+```
+
+> This preference can be enforced with an existing ESLint rule in your project
+
+## Prefer using `Symbol`, `Set` and `Map` wherever these new data structures can be useful and simplify the code markup
+
+## Prefer using `numeric literals`
+
+The `parseInt()` and `Number.parseInt()` functions can be used to turn binary, octal, and hexadecimal strings into integers. As binary, octal, and hexadecimal literals are supported in ES6, this point encourages use of those numeric literals instead of `parseInt()` or `Number.parseInt()`.
+
+Bad:
+
+```javascript
+parseInt("111110111", 2) === 503;
+parseInt(`111110111`, 2) === 503;
+parseInt("767", 8) === 503;
+parseInt("1F7", 16) === 503;
+Number.parseInt("111110111", 2) === 503;
+Number.parseInt("767", 8) === 503;
+Number.parseInt("1F7", 16) === 503;
+```
+
+Good:
+
+```javascript
+parseInt(1);
+parseInt(1, 3);
+Number.parseInt(1);
+Number.parseInt(1, 3);
+
+0b111110111 === 503;
+0o767 === 503;
+0x1F7 === 503;
+
+a[parseInt](1,2);
+
+parseInt(foo);
+parseInt(foo, 2);
+Number.parseInt(foo);
+Number.parseInt(foo, 2);
+```
+
 > This preference can be enforced with an existing ESLint rule in your project
