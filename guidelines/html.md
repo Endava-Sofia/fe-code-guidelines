@@ -59,13 +59,16 @@ We recommend closing all HTML elements:
   <p>This is a paragraph.</p>
 </section>
 ```
+
 Or self-closing tags
+
 ```html
 <input />
 <img />
 <hr />
 etc.
 ```
+
 <br/>
 
 ## Close Empty HTML Elements
@@ -248,11 +251,11 @@ Good List Example:
 
 <br/>
 
-## Never Skip the \<title> Element
+## Never Skip the "title" Element
 
 <br/>
 
-The \<title> element is required in HTML.
+The "title" element is required in HTML.
 
 The contents of a page title is very important for search engine optimization (SEO)! The page title is used by search engine algorithms to decide the order when listing pages in search results.
 
@@ -272,7 +275,7 @@ The \<title> element:
 ## Omitting \<html> and \<body>?
 
 <br/>
-An HTML page will validate without the \<html> and \<body> tags:
+An HTML page will validate without the "html" and "body" tags:
 
 ```html
 Example
@@ -285,20 +288,20 @@ Example
 <p>This is a paragraph.</p>
 ```
 
-However, we strongly recommend to always add the \<html> and \<body> tags!
+However, we strongly recommend to always add the "html" and "body" tags!
 
-Omitting \<body> can produce errors in older browsers.
+Omitting "body" can produce errors in older browsers.
 
-Omitting \<html> and \<body> can also crash DOM and XML software.
-
-<br/>
-
-## Omitting \<head>?
+Omitting "html" and "body" can also crash DOM and XML software.
 
 <br/>
-The HTML \<head> tag can also be omitted.
 
-Browsers will add all elements before \<body>, to a default \<head> element.
+## Omitting "head"?
+
+<br/>
+The HTML "head" tag can also be omitted.
+
+Browsers will add all elements before "body", to a default "head" element.
 
 ```html
 Example
@@ -336,7 +339,7 @@ If you expect XML/XHTML software to access your page, keep the closing slash (/)
 ## Add the lang Attribute
 
 <br/>
-You should always include the lang attribute inside the <html> tag, to declare the language of the Web page. This is meant to assist search engines and browsers.
+You should always include the lang attribute inside the "html" tag, to declare the language of the Web page. This is meant to assist search engines and browsers.
 
 ```html
 Example
@@ -357,7 +360,7 @@ Example
 ## Meta Data
 
 <br/>
-To ensure proper interpretation and correct search engine indexing, both the language and the character encoding <meta charset="charset"> should be defined as early as possible in an HTML document:
+To ensure proper interpretation and correct search engine indexing, both the language and the character encoding 'meta charset="charset"' should be defined as early as possible in an HTML document:
 
 ```html
 <!DOCTYPE html>
@@ -376,7 +379,7 @@ To ensure proper interpretation and correct search engine indexing, both the lan
 <br/>
 The viewport is the user's visible area of a web page. It varies with the device - it will be smaller on a mobile phone than on a computer screen.
 
-You should include the following <meta> element in all your web pages:
+You should include the following "meta" element in all your web pages:
 
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -458,6 +461,12 @@ Long comments become easily observable when indented with two spaces.
 
 <br/>
 
+While there is no column limit recommendation for HTML, you may consider wrapping long lines if it significantly improves readability.
+
+When line-wrapping, each continuation line should be indented to distinguish wrapped attributes from child elements. Lines should be wrapped consistently within a project, ideally enforced by automated code formatting tools.
+
+<br/>
+
 ```html
 <button
   mat-icon-button
@@ -505,7 +514,7 @@ Both will be treated as HTML by any web browser and web server.
 ## Default Filenames
 
 <br/>
-When a URL does not specify a filename at the end (like "<https://www.w3schools.com/>"), the server just adds a default filename, such as "index.html", "index.htm", "default.html", or "default.htm".
+When a URL does not specify a filename at the end (like "https://www.w3schools.com"), the server just adds a default filename, such as "index.html", "index.htm", "default.html", or "default.htm".
 
 If your server is configured only with "index.html" as the default filename, your file must be named "index.html", and not "default.html".
 
@@ -537,7 +546,15 @@ Examples of semantic elements: \<form>, \<table>, and \<article> - Clearly defin
 
 <br/>
 
-Many web sites contain HTML code like: \<div id="nav"> \<div class="header"> \<div id="footer"> to indicate navigation, header, and footer.
+Many web sites contain HTML code like:
+
+```html
+<div id="nav"></div>
+<div class="header"></div>
+<div id="footer"></div>
+```
+
+to indicate navigation, header, and footer.
 
 In HTML there are some semantic elements that can be used to define different parts of a web page:
 
@@ -554,3 +571,72 @@ In HTML there are some semantic elements that can be used to define different pa
 - \<section> - Defines a section in a document
 - \<summary> - Defines a visible heading for a \<details> element
 - \<time> - Defines a date/time
+
+Examples:
+
+```html
+Details tag
+Specify details that the user can open and close on demand:
+<details>
+  <summary>Epcot Center</summary>
+  <p>Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international pavilions, award-winning fireworks and seasonal special events.</p>
+</details>
+```
+
+```html
+Article tag
+Three articles with independent, self-contained content:
+<article>
+  <h2>Google Chrome</h2>
+  <p>
+    Google Chrome is a web browser developed by Google, released in 2008. Chrome is the world's most popular web browser today!
+  </p>
+</article>
+
+<article>
+  <h2>Mozilla Firefox</h2>
+  <p>
+    Mozilla Firefox is an open-source web browser developed by Mozilla. Firefox has been the second most popular web browser since January, 2018.
+  </p>
+</article>
+
+<article>
+  <h2>Microsoft Edge</h2>
+  <p>
+    Microsoft Edge is a web browser developed by Microsoft, released in 2015. Microsoft Edge replaced Internet Explorer.
+  </p>
+</article>
+```
+
+```html
+Header tag
+A header for an article tag
+<article>
+  <header>
+    <h1>A heading here</h1>
+    <p>Posted by John Doe</p>
+    <p>Some additional information here</p>
+  </header>
+  <p>Lorem Ipsum dolor set amet....</p>
+</article>
+```
+
+```html
+Footer tag
+A footer section in a document:
+<footer>
+  <p>Author: Hege Refsnes</p>
+  <p><a href="mailto:hege@example.com">hege@example.com</a></p>
+</footer>
+```
+
+<br/>
+
+## ARIA
+
+<br/>
+
+Accessible Rich Internet Applications (ARIA) is a set of roles and attributes that define ways to make web content and web applications (especially those developed with JavaScript) more accessible to people with disabilities.
+
+It supplements HTML so that interactions and widgets commonly used in applications can be passed to assistive technologies when there is not otherwise a mechanism. For example, ARIA enables accessible JavaScript widgets, form hints and error messages, live content updates, and more.
+[More info](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA)
