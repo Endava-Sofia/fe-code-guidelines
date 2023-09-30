@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "lint": "markdownlint guidelines/**/*.md --config .markdownlint.jsonc",
+    "lint": "markdownlint guidelines/**/*.md -c .markdownlint.jsonc",
     "lint:fix": "npm run lint -- -f"
   },
   "repository": {
