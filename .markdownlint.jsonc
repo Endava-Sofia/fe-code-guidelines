@@ -1,5 +1,5 @@
 {
-// Default state for all rules
+  // Default state for all rules
   "default": true,
 
   // Path to configuration file to extend
