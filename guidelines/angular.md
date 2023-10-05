@@ -1,12 +1,27 @@
 # Angular guidelines and best practices
 
+## Keeping Angular up to date
+
+If you want to update Angular dependencies use the Angular CLI schematics `ng update` instead of running `npm update` for its packages.
+
+- Running `ng update @angular/cli` will update packages from the Angular CLI repo.
+- Running `ng update @angular/core` will update packages from the Angular core repo (incl. zone.js).
+- Running `ng update @angular/material` will update all packages from the Angular Components repo. If you only use the Angular CDK from that repo you can just run `ng update @angular/cdk`.
+- Running `ng update @angular-eslint/schematics` will update all packages from the Angular ESLint repo.
+
+The benefit of using `ng update` is not only the handling of batch updates but it also executes update scripts (if any). That's why it's also the command used for migrating from one major version to another.
+
+Speaking of migrating between major versions of Angular, always use [the official Angular Update Guide](https://update.angular.io) page. It offers a form where you select your current version, the target version you want to migrate to and some additional options.
+Then a list of actions is generated for you to guide you throughout the process but don't worry, most (if not all) actions are automatically handled by the update scripts.
+
 ## Use RxJS properly
 
 While learning Angular you eventually find out that it uses RxJS for many of its APIs and the framework embraces RxJS Observables for state management and reactivity. That's why it's important to have a good understanding of RxJS and follow some good practices when using observables in Angular to avoid potential issues.
 
 ### Don't forget to track and unsubscribe
 
-If we ignore some specific cases like HTTP requests, observables usually represent a stream of data and they may emit values many times before they complete (or even never complete). This is a serious paradigme shift for developers who are used to work with Promises and forgetting to unsubscribe from an observable may result in memory leaks and unwanted behavior. Subscriptions can be handled in a few different ways:
+If we ignore some specific cases like HTTP requests, observables usually represent a stream of data and they may emit values many times before they complete (or even never complete).
+This is a serious paradigme shift for developers who are used to work with Promises and forgetting to unsubscribe from an observable may result in memory leaks and unwanted behavior. Subscriptions can be handled in a few different ways:
 
 - Assign the subscription to a variably/property and manually unsubscribe from it when it's no longer needed.
 - Whenever possible, use the [async pipe](https://angular.io/api/common/AsyncPipe) to bind observables in templates. The async pipe will automatically unsubscribe when the component is destroyed.
@@ -33,7 +48,8 @@ observable1.pipe(
 
 ## The RxJS Operator Decision Tree
 
-RxJS offers a quite large set of functions and sometimes even experienced developers can get lost and forget what to use in a given situation or run into an entirely new case where a new approach is needed. This is where the [Operator Decision Tree](https://rxjs.dev/operator-decision-tree) comes to help. This is a page from the official RxJS website, and it comes with a friendly wizard form. The form has 2 or more steps (depending on the path you choose) and on each step you must select the option that best describe your case and at the end you'll be provided with an answer that links you to the exact RxJS function(S) you'll need.
+RxJS offers a quite large set of functions and sometimes even experienced developers can get lost and forget what to use in a given situation or run into an entirely new case where a new approach is needed. This is where the [Operator Decision Tree](https://rxjs.dev/operator-decision-tree) comes to help.
+This is a page from the official RxJS website, and it comes with a friendly wizard form. The form has 2 or more steps (depending on the path you choose) and on each step you must select the option that best describe your case and at the end you'll be provided with an answer that links you to the exact RxJS function(S) you'll need.
 
 ![RxJS Operator Decision Tree Example](/img/rxjs_odt_example.png)
 
@@ -48,7 +64,8 @@ To keep track of changes in the entire app and reflect them on the UI Angular im
 - Use [signals](https://angular.io/guide/signals) for properties in template bindings. This is a new feature in Angular that allows fine-grained control over reactivity and change detection.
 - Provide a [`trackBy` function to `ngFor` directives](https://angular.io/guide/built-in-directives#tracking-items-with-ngfor-trackby) to optimize item change detection. If you don't provide such function, the full list will be re-rendered on each CD cycle. This can be enforced using the Angular ESLint rule [@angular-eslint/template/use-track-by-function](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/use-track-by-function.md)
 - Use virtual scrolling for huge lists of DOM elements to optimize scrolling performance and avoid the page from being blocked. The Angular CDK repo offers the [Scrolling module](https://material.angular.io/cdk/scrolling/overview) which already implements a structural directive for virtual scrolling.
-- Avoid calling functions in template bindings. If you bind a function it will be re-executed during each CD cycle, even if it's not necessary. This can be forbidden using the Angular ESLint rule [@angular-eslint/template/no-call-expression](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/no-call-expression.md). We encourage you to use [pipes](https://angular.io/guide/pipes-overview) or [computed signals](https://angular.io/guide/signals#computed-signals) instead.
+- Avoid calling functions in template bindings. If you bind a function it will be re-executed during each CD cycle, even if it's not necessary. This can be forbidden using the Angular ESLint rule [@angular-eslint/template/no-call-expression](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/no-call-expression.md).
+We encourage you to use [pipes](https://angular.io/guide/pipes-overview) or [computed signals](https://angular.io/guide/signals#computed-signals) instead.
 
 The following video by the Angular product lead Minko Gechev explains some of these concepts very well and demonstrate the optimization techniques:
 
@@ -56,7 +73,8 @@ The following video by the Angular product lead Minko Gechev explains some of th
 
 ### Bundle size optimizations
 
-As the code base grows larger and the usage of 3rd party libraries increases, so does the size JavaScript bundle after build. There are various optimization techniques that allow tree-shaking unused modules and lazy loading certain modules off the main JS chunk. This frees up the main JavaScript bundle from code which is not necessary on initial app load.
+As the code base grows larger and the usage of 3rd party libraries increases, so does the size JavaScript bundle after build. There are various optimization techniques that allow tree-shaking unused modules and lazy loading certain modules off the main JS chunk.
+This frees up the main JavaScript bundle from code which is not necessary on initial app load.
 
 - [Lazy load your routes](https://angular.io/guide/lazy-loading-ngmodules) to ensure the JS modules tied to a given route/feature are only downloaded when they are first needed.
 - When route-based lazy loading is not possible (for example - when you want to lazy load a component for a pop-up), use standalone components with dynamic imports and attach them to the view.
