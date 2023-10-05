@@ -577,3 +577,17 @@ Like nesting, the :is(), :has(), and negation (:not()) pseudo-classes themselves
 [Read more](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#the_is_not_has_and_css_nesting_exceptions)
 
 You can use css specificity calculator [here](https://polypane.app/css-specificity-calculator/#selector=)
+
+The table below shows some examples on how to calculate specificity values:
+
+| **Selector**           | **Specificity Value** | Calculation                           |
+| ---------------------- |:---------------------:| -------------------------------------:|
+| p                      | 1                     | 1                                     |
+| p.test                 | 11                    | 1 + 10                                |
+| p#demo                 | 101                   | 1 + 100                               |
+| p style="color: pink;" | 1000                  | 1000                                  |
+| #demo                  | 100                   | 100                                   |
+| .test                  | 10                    | 10                                    |
+| p.test1.test2          | 21                    | 1 + 10 + 10                           |
+| #navbar p#demo         |201                    | 100 + 1 + 100                         |
+| *                      | 0                     | 0 (the universal selector is ignored) |
