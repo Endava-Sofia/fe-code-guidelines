@@ -14,13 +14,13 @@ Using `const` when the variable's value is not meant to change accomplishes a fe
 
 - It gives a hint to the JavaScript engine's optimizer that you won't be changing that variable's value. While the engine can frequently work that out through code analysis, using const saves it the trouble. (Caveat: I have no idea whether this is actually useful to the JavaScript engine. It seems like it would be, but runtime code optimization is a very complicated and sometimes non-intuitive process).
 
-> This preference can be enforced with an existing ESLint rule in your project
+> This preference can be enforced with an existing ESLint rule in your project: <https://eslint.org/docs/latest/rules/prefer-const>
 
 ## Prefer object spread everywhere
 
 Introduced in ES2018, object spread is a declarative alternative which may perform better than the more dynamic, imperative `Object.assign`.
 
-> This preference can be enforced with an existing ESLint rule in your project
+> This preference can be enforced with an existing ESLint rule in your project: <https://eslint.org/docs/latest/rules/prefer-object-spread>
 
 ## Prefer `array and object destructuring` for constants everywhere
 
@@ -56,7 +56,7 @@ let foo;
 ({ foo } = object);
 ```
 
-> This preference can be enforced with an existing ESLint rule in your project
+> This preference can be enforced with an existing ESLint rule in your project: <https://eslint.org/docs/latest/rules/prefer-destructuring>
 
 ## Prefer `optional chaining` everywhere
 
@@ -101,7 +101,7 @@ foo?.a?.b?.c?.d?.e;
 !foo?.bar?.baz?.();
 ```
 
-> This preference can be enforced with an existing ESLint rule in your project
+> This preference can be enforced with an existing ESLint rule in your project: <https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/prefer-optional-chain.md>
 
 ## Prefer `nullish coalescing` everywhere
 
@@ -143,7 +143,7 @@ foo ?? 'a string';
 foo ?? 'a string';
 ```
 
-> This preference can be enforced with an existing ESLint rule in your project
+> This preference can be enforced with an existing ESLint rule in your project: <https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/prefer-nullish-coalescing.md>
 
 ## Prefer using `template literal` syntax for string concatenation and for multi-line string values
 
@@ -161,13 +161,13 @@ Good:
 var str = `Hello, ${name}!`;
 ```
 
-> This preference can be enforced with an existing ESLint rule in your project
+> This preference can be enforced with an existing ESLint rule in your project: <https://eslint.org/docs/latest/rules/prefer-template>
 
 ## Prefer using `includes` method for checking against multiple possible values
 
 Prior to ES2015, `Array#indexOf` and `String#indexOf` comparisons against `-1` were the standard ways to check whether a value exists in an array or string, respectively. Alternatives that are easier to read and write now exist: ES2015 added `String#includes` and ES2016 added `Array#includes`.
 
-Bad:
+Having the current input data:
 
 ```javascript
 const str: string;
@@ -179,7 +179,11 @@ const userDefined: {
   indexOf(x: any): number;
   includes(x: any): boolean;
 };
+```
 
+Bad:
+
+```javascript
 str.indexOf(value) !== -1;
 array.indexOf(value) !== -1;
 readonlyArray.indexOf(value) === -1;
@@ -193,16 +197,6 @@ userDefined.indexOf(value) >= 0;
 Good:
 
 ```javascript
-const str: string;
-const array: any[];
-const readonlyArray: ReadonlyArray<any>;
-const typedArray: UInt8Array;
-const maybe: string;
-const userDefined: {
-  indexOf(x: any): number;
-  includes(x: any): boolean;
-};
-
 str.includes(value);
 array.includes(value);
 !readonlyArray.includes(value);
@@ -211,18 +205,11 @@ maybe?.includes('');
 userDefined.includes(value);
 
 str.includes('example');
-
-// The two methods have different parameters.
-declare const mismatchExample: {
-  indexOf(x: unknown, fromIndex?: number): number;
-  includes(x: unknown): boolean;
-};
-mismatchExample.indexOf(value) >= 0;
 ```
 
 It's also a good idea to use `Array#includes` method when you have an `if` condition where you check if a value matches a multiple set of values instead of chaining multiple boolean conditions with `&&` logical operator.
 
-> This preference can be enforced with an existing ESLint rule in your project
+> This preference can be enforced with an existing ESLint rule in your project: <https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/prefer-includes.md>
 
 ## Prefer `async/await` everywhere (no await in loops though)
 
@@ -288,7 +275,7 @@ async function doStuff() {
 // Second Timeout
 ```
 
-> This preference can be enforced with an existing ESLint rule in your project
+> This preference can be enforced with existing ESLint rules in your project: <https://github.com/eslint-community/eslint-plugin-promise/blob/main/docs/rules/prefer-await-to-then.md> and <https://eslint.org/docs/latest/rules/require-await>
 
 ## Prefer object literal `property value shorthand` syntax
 
@@ -324,7 +311,7 @@ var foo = {
 };
 ```
 
-> This preference can be enforced with an existing ESLint rule in your project
+> This preference can be enforced with an existing ESLint rule in your project: <https://eslint.org/docs/latest/rules/object-shorthand>
 
 ## Prefer using the newest ES string, array and object methods
 
@@ -374,7 +361,7 @@ Object.getOwnPropertyNames(myObject)
 
 Many JavaScript style guides and linters recommend against the use of `for...in`, because it iterates over the entire prototype chain which is rarely what one wants, and may be a confusion with the more widely-used `for...of` loop. `for...in` is most practically used for debugging purposes, being an easy way to check the properties of an object (by outputting to the console or otherwise). In situations where objects are used as ad hoc key-value pairs, `for...in` allows you check if any of those keys hold a particular value.
 
-> This preference can be enforced with an existing ESLint rule in your project
+> This preference can be enforced with an existing ESLint rule in your project: <https://typescript-eslint.io/rules/prefer-for-of/>
 
 ## Prefer using `filter`, `map`, `reduce`, etc. but not `forEach`
 
@@ -413,7 +400,7 @@ foo(a => a);
 foo(() => this.a);
 ```
 
-> This preference can be enforced with an existing ESLint rule in your project
+> This preference can be enforced with an existing ESLint rule in your project: <https://eslint.org/docs/latest/rules/prefer-arrow-callback>
 
 ## Prefer using rest parameters
 
@@ -458,9 +445,75 @@ function foo() {
 }
 ```
 
-> This preference can be enforced with an existing ESLint rule in your project
+> This preference can be enforced with an existing ESLint rule in your project: <https://eslint.org/docs/latest/rules/prefer-rest-params>
 
-## Prefer using `Symbol`, `Set` and `Map` wherever these new data structures can be useful and simplify the code markup
+## Prefer using `Set`, `Map` and `Symbol` wherever these new data structures can be useful and simplify the code markup
+
+Application of `Set` in JavaScript:
+
+- Deleting duplicates element from an array
+- Creating a unique array from the unique values of two arrays
+- Union of two sets
+- Intersection of two sets
+
+Good:
+
+```javascript
+
+// Create an array containing duplicate items
+const duplcateArray = [
+    2, 3, 4, 8, 8, 9, 9, 4, 2, 
+    3, 3, 4, 6, 7, 5, 32, 3, 4, 5
+];
+ 
+// Use Set and Spread Operator to remove 
+// duplicate items from an array
+console.log([...new Set(duplcateArray)]);
+```
+
+Use `Map` for dictionaries or hash maps where you have a variable number of entries, with frequent updates, whose keys might not be known at author time, such as an event emitter.
+
+Before ES6, the only way to get a hash map is by creating an empty object.
+
+Bad:
+
+```javascript
+const hashMap = {}
+```
+
+Using objects for hash maps can cause confusion and security hazards:
+
+- _Unwanted inheritance_ -
+  Upon creation, this object is no longer empty. Although hashMap is made with an empty object literal, it automatically inherits from Object.prototype. That's why we can invoke methods like hasOwnProperty, toString, constructor on hashMap even though we never explicitly defined those methods on the object.
+
+  Because of prototypal inheritance, we now have two types of properties conflated: properties that live within the object itself, i.e. its own properties, and properties that live in the prototype chain, i.e. inherited properties. As a result, we need an additional check (e.g. hasOwnProperty) to make sure a given property is indeed user-provided, as opposed to inherited from the prototype.
+
+  On top of that, because of how the property resolution mechanism works in JavaScript, any change to Object.prototype at runtime will cause a ripple effect in all objects. This opens the door for prototype pollution attacks, which can be a serious security issue for large JavaScript applications.
+
+  Fortunately, we can work around this by using Object.create(null), which makes an object that inherits nothing from Object.prototype.
+
+- _Name collisions_ - When an object's own properties have name collisions with ones on its prototype, it breaks expectations and thus crashes your program.
+- _Sub-optimal ergonomics_ - Object doesn't provide adequate ergonomics to be used as a hash map. Many common tasks can't be intuitively performed (get size, iterate, clear, check property existence).
+
+ES6 brings us `Map`. It is much more suited for a hash map use case.
+
+Good:
+
+```javascript
+const hashMap = new Map();
+
+hashMap.set('a', 1);
+hashMap.set('b', 2);
+hashMap.set('c', 3);
+hashMap.get('a'); // 1
+hashMap.set('a', 'ok');
+hashMap.get('a'); // 'ok'
+hashMap.size; // 3
+hashMap.delete('b'); // removes b key/value
+hashMap.clear() // empties map
+```
+
+`Symbols` are often used to add unique property keys to an object that won't collide with keys any other code might add to the object, and which are hidden from any mechanisms other code will typically use to access the object. That enables a form of weak encapsulation, or a weak form of information hiding.
 
 ## Prefer using `numeric literals`
 
@@ -498,4 +551,4 @@ Number.parseInt(foo);
 Number.parseInt(foo, 2);
 ```
 
-> This preference can be enforced with an existing ESLint rule in your project
+> This preference can be enforced with an existing ESLint rule in your project: <https://eslint.org/docs/latest/rules/prefer-numeric-literals>
