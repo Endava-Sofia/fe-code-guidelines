@@ -16,6 +16,32 @@ You can use Prettier as a code formatter to keep the code style consistent (and 
 
 Prettier formats all the code and keeps the style consistent. Nevertheless, there are a few additional rules that you need to follow.
 
+<br/>
+
+### Measuring units (px, rem and em)
+
+<br/>
+
+When building accessible websites, you need to consider inclusion. When you use px, you don't put user preferences at the forefront. When the user zooms in or change the browser font setting, websites need to adjust to fit the user's setting. px do not scale but em and rem scales.
+
+- Pixel (px) is a commonly used CSS unit on websites. pxis not scalable, it is an absolute unit. Change in the value of another element does not affect the value of absolute units. The value assigned is fixed irrespective of the user setting.
+
+- Element (em) and Root element (rem) are responsive units interpreted into equivalent pxunit by the browser. They are relative units. Change in the value of the parent or root element affects the value of relative units. They scale with the device. So, what makes the two different? The difference lies in how the values are derived by the browser. To view the computed values, open the Chrome Developer Tools and navigate to the Computed tab.
+
+- The computed pixel value of em unit is relative to the font size of the element being styled. This is also affected by inherited values from the parent elements unless it is explicitly overridden by a px unit which is not subject to inheritance.
+
+- The computed pixel value of rem unit is relative to the font size of the root (html) element. This is however affected by the font size setting on the browser as a result of inheritance unless it is overridden by a px unit which is not subject to inheritance.
+
+So, which one is better to use? It depends on the specific use case. Here are a few general guidelines:
+
+- Use px for small, fixed-size elements like borders or shadows.
+
+- Use em for typography and other scalable elements that need to change size relative to their parent element.
+
+- Use rem for scalable typography and responsive layouts that need to change size relative to the root element. Use rem as the unit for most of your property value.
+
+<br/>
+
 ### Spacing
 
 <br/>
@@ -65,6 +91,9 @@ Prettier formats all the code and keeps the style consistent. Nevertheless, ther
 - Try to use single ' quotes instead of double quotes”. In rare situtations where both needed inner quotes should always be single.
 - Attributes selector should always be enclosed within quotes (Bad example: [type=submit], Good example: [type='submit']
 - Set a limit of 80 characters width at CSS files.
+  - To avoid wrapping when copying code into email, web pages, and books.
+  - To view multiple source windows side-by-side or using a side-by-side diff viewer.
+  - To improve readability. Narrow code can be read quickly without having to scan your eyes from side to side.
 - try to set a max nesting limit of 3 levels.
 - Use /**/ for comment blocks instead of //.
 
@@ -202,7 +231,7 @@ Avoid qualifying class names with type selectors.
 
 Unless necessary (for example with helper classes), do not use element names in conjunction with classes.
 
-Avoiding unnecessary ancestor selectors is useful for performance reasons.
+Avoiding unnecessary ancestor selectors is useful for performance reasons. Also prevents the styling from breaking if the under-laying html element is changed in the html code (for example div becomes a span).
 
 ```css
 /* Not recommended */
@@ -224,7 +253,7 @@ div.error {}
 
 Avoid ID selectors.
 
-ID attributes are expected to be unique across an entire page, which is difficult to guarantee when a page contains many components worked on by many different engineers. Class selectors should be preferred in all situations.
+ID attributes are expected to be unique across an entire page, which is difficult to guarantee when a page contains many components worked on by many different engineers. Class selectors should be preferred. So for overriding a style rule added by an external library CSS code it might be good to use them as that way you might avoid having to add !important which is way worse as a solution.
 
 ```css
 /* Not recommended */
@@ -497,6 +526,17 @@ Separate rules by new lines.
 Always put a blank line (two line breaks) between rules.
 
 ```css
+/* Not recommended */
+html {
+  background: #fff;
+}
+body {
+  margin: auto;width: 50%;
+}
+```
+
+```css
+/* Recommended */
 html {
   background: #fff;
 }
@@ -513,7 +553,7 @@ body {
 
 <br/>
 
-In a stylesheet that contains media query styles for different target viewport sizes, first include the narrow screen/mobile styling before any other media queries are encountered. Add styling for wider viewport sizes via successive media queries. Following this rule has many advantages that are explained in the Mobile First article.
+In a stylesheet that contains media query styles for different target viewport sizes, first include the narrow screen/mobile styling before any other media queries are encountered. Add styling for wider viewport sizes via successive media queries. Following this rule has many advantages that are explained in the [Mobile First article](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design).
 
 ```css
 /* Default CSS layout for narrow screens */
