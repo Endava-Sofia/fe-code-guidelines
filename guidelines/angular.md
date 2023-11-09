@@ -1,5 +1,31 @@
 # Angular guidelines and best practices
 
+## Use the Angular CLI
+
+Angular provides its [own command-line interface](https://angular.dev/tools/cli) which can be used to help you with anything, from scuffolding a new app to generating boilerplate for all primitives and even [migrating your app](#keeping-angular-up-to-date) to a new version of Angular.
+
+Make sure to use the CLI rather than manually creating your files. CLI generation saves you a lot of time, prevents potential mistakes and follows the best practices.
+
+Each command allows certain type of arguments to be passed in cases where you want to override default options.
+A full reference for all commands can be found on the [official docs page](https://angular.dev/cli).
+
+### Example for component generation
+
+For example, the following command will generate a brand new component in its own folder with 4 related files - template (HTML), stylesheet (CSS/SCSS/LESS), TypeScript file with the component class and a TypeScript spec file for unit tests.
+
+```shell
+ng generate component cool-page
+
+CREATE src/app/cool-page/cool-page.component.html (24 bytes)
+CREATE src/app/cool-page/cool-page.component.spec.ts (569 bytes)
+CREATE src/app/cool-page/cool-page.component.ts (309 bytes)
+CREATE src/app/cool-page/cool-page.component.scss (0 bytes)
+```
+
+The file names are derived by the component name you provide and suffixed with `.component`. The component class name is constructed the same way but in camel case - `CoolPageComponent` and decorated accordingly.
+
+![ng new component example](/img/ng_new_component_example.png)
+
 ## Keeping Angular up to date
 
 If you want to update Angular dependencies use the Angular CLI schematics `ng update` instead of running `npm update` for its packages.
