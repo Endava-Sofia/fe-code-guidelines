@@ -79,6 +79,8 @@ This can be enforced with a ESLint rule:
 ],
 ```
 
+For more info and tips on Generics please view the [Generic Types](#generic-types) section below.
+
 ### Abbreviations & Acronyms
 
 Treat acronyms as whole words, with capitalized first letter only.
@@ -235,6 +237,8 @@ The TypeScript compiler can run in 2 modes:
 - In development mode, we typically want quick iteration loops. The compiler transpiles to JavaScript without full type information. This is much faster, but requires import type in certain cases.
 - In production mode, we want correctness. The compiler type checks everything and ensures import type is used correctly.
 
+It's also worth mentioning that bundlers will not import any code from the file when we import only types from it. This helps whith tree shaking of code when we only need to specify a type for something and also prevents cyclic dependencies in imports from occuring.
+
 ## Export type
 
 Use `export type` when re-exporting a type, e.g.:
@@ -281,6 +285,8 @@ It's a good practice to extract all type definitions for each context to separat
 ## Consistent Type Definitions
 
 TypeScript provides two common ways to define an object type: `interface` and `type` (aka `type alias`). The two are generally very similar, and can often be used interchangeably. Using the same type declaration style consistently helps with code readability.
+
+For more info on when to prefer `interface` over `type` and vice versa please refer to the [Type Alias vs Interface](#type-alias-vs-interface) section below.
 
 > This preference can be enforced with an existing ESLint rule in your project: <https://typescript-eslint.io/rules/consistent-type-definitions/>
 
@@ -614,7 +620,3 @@ type ISODateString = `${number}-${number}-${number}T${number}:${number}:${number
 In current days of front-end development, it's crucial to have a good understanding of TypeScript. While learning modern front-end frameworks, a developer also learns TypeScript but that's only to some extent.
 
 Going through the [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html) on their official website will provide you with a very good knowledge and skills, starting from the basics and building up to the most advanced features of the language.
-
-## Creating types from other types
-
-Part of [the Handbook](#read-the-typescript-handbook) touches the topic of creating types from already existing ones. It's always worth trying some approaches for creating types which are dependent on others to avoid repeating the same properties and potential mistakes during the process.
