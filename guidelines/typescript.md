@@ -115,6 +115,56 @@ Pascal case
 React component name following "Props" postfix
 `[ComponentName]Props` - `ProductItemProps`, `ProductsPageProps`
 
+## Imports Grouping and Sorting
+
+We recommend to write the imports in all files (.ts, .tsx and .js) according to the following basic rules:
+
+- It is preferred to not leave empty lines between import lines as you usually have a lot of imports and want to keep the import sections as neat, compact and organized as possible.
+- Imports from third-party libraries should always be made against the root of the library package and not from specific folders in it unless that is absolutely unavoidable and necessary or if it is documented in the library's official documentation.
+That is done in order to prevent breaking changes in the package's folder structure from forcing a refactoring of all the imports from it in you project.
+- TypeScript code must use paths to import other TypeScript code. Paths may be relative, i.e. starting with `.` or `..`, or rooted at the base directory, e.g. `root/path/to/file`.
+
+  Code _should_ use relative imports (`./foo`) rather than absolute imports `path/to/foo` when referring to files within the same (logical) project as this allows to move the project around without introducing changes in these imports.
+
+  Consider limiting the number of parent steps (`../../../`) as those can make module and path structures hard to understand.
+
+  Create prettier imports for folders paths containing some common project code by defining the `paths` and `baseUrl` properties in the `compilerOptions` section in the `tsconfig.json` file.
+
+  This will avoid long relative paths when doing imports.
+
+  Bad:
+
+  ```ts
+  import { UserService } from '../../../services/UserService';
+  ```
+
+  Good:
+
+  ```ts
+  import { UserService } from '@services/UserService';
+  ```
+
+  ```ts
+  // tsconfig.json
+  ...
+    "compilerOptions": {
+      ...
+      "baseUrl": "src",
+      "paths": {
+        "@services": ["services/*"]
+      }
+      ...
+    }
+  ...
+  ```
+
+- It’s not recommended to create circular dependencies via importing one module in another one that imports something from the first one.
+- Imports could be also sorted alphabetically by groups automatically using the `simple-importsort` ESLint plugin with the following example import groups order defined:
+  1. Side effect imports first.
+  2. Packages next. Things that start with a letter (or digit or underscore), or `@` followed by a letter.
+  3. Absolute imports and other imports such as Vue-style @/foo . Anything not matched in another group come after that.
+  4. Relative imports are last. Or anything that starts with a dot.
+
 ## Exports
 
 Use named exports in all code.
