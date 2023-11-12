@@ -84,6 +84,8 @@ const UserProfile = ({ user }) => {
 />
 ```
 
+> This preference can be enforced with an existing ESLint rule in your project using the [camelcase](https://eslint.org/docs/latest/rules/camelcase) rule.
+
 ### Component Variables, Handlers, `useState` State and Setters Should use camelCase
 
 ```jsx
@@ -120,7 +122,7 @@ Following the rule of a single component or hook per file simplifies understandi
 That way, each file's purpose is clear and truly modular.
 
 ```jsx
-// ❌ Multiple component in a single file
+// ❌ Multiple components in a single file
 
 // Layout.jsx
 import React from 'react';
