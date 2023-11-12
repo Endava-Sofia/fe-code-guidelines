@@ -1,3 +1,39 @@
+- [React guidelines and best practices](#react-guidelines-and-best-practices)
+  - [Naming and file conventions](#naming-and-file-conventions)
+    - [Components Should Use `.jsx` or `.tsx` File Extension](#components-should-use-jsx-or-tsx-file-extension)
+    - [Custom Hooks Should Use `.js` or `.ts` File Extension](#custom-hooks-should-use-js-or-ts-file-extension)
+    - [Component File Names and Component Names Should Use PascalCase](#component-file-names-and-component-names-should-use-pascalcase)
+    - [Custom hooks files names and hook names should use camelCase](#component-names-and-custom-hooks-should-be-the-same-as-the-file-names)
+    - [Component Names and Custom Hooks Should Be The Same as the File Names](#component-names-and-custom-hooks-should-be-the-same-as-the-file-names)
+    - [Component Prop Names Should Use camelCase](#component-prop-names-should-use-camelcase)
+    - [Component Variables, Handlers, `useState` State and Setters Should use camelCase](#component-variables-handlers-usestate-state-and-setters-should-use-camelcase)
+  - [Code standards](#code-standards)
+    - [Single component or hook per file](#single-component-or-hook-per-file)
+    - [Prefer Functional To Class Components](#prefer-functional-to-class-components)
+    - [Export components using named export](#export-components-using-named-export)
+    - [Always Destructure Props](#always-destructure-props)
+    - [Avoid Using DOM or Predefined Component Prop Names for Different Purposes](#avoid-using-dom-or-predefined-component-prop-names-for-different-purposes)
+    - [Favor Small, Single-purpose Components](#favor-small-single-purpose-components)
+    - [Separate Business Logic From UI](#separate-business-logic-from-ui)
+    - [Omit the Value of the Prop When It is Explicitly `true`](#omit-the-value-of-the-prop-when-it-is-explicitly-true)
+    - [Always Use Double Quotes (") for JSX Attributes](#always-use-double-quotes--for-jsx-attributes)
+    - [Self-close Components Without Children](#self-close-components-without-children)
+    - [Don't Extract Components Without Purpose](#dont-extract-components-without-purpose)
+    - [Prefer the logical `&&` operator for conditional rendering, but make sure the left operand is always boolean](#prefer-the-logical--operator-for-conditional-rendering-but-make-sure-the-left-operand-is-always-boolean)
+    - [Avoid nested ternary operators](#avoid-nested-ternary-operators)
+    - [Extract repetitive markup](#extract-repetitive-markup)
+    - [Pass Objects Instead of Primitives](#pass-objects-instead-of-primitives)
+    - [Avoid Spreading Props](#avoid-spreading-props)
+    - [Favor Multiple Smaller `useEffect` Calls to a Single Big One](#favor-multiple-smaller-useeffect-calls-to-a-single-big-one)
+    - [Follow the Rules of Hooks](#follow-the-rules-of-hooks)
+    - [Pass All Hook Dependencies](#pass-all-hook-dependencies)
+  - [React with Typescript](#react-with-typescript)
+    - [Use the Component Name as a prefix followed by `Props` for all component interfaces](#use-the-component-name-as-a-prefix-followed-by-props-for-all-component-interfaces)
+    - [Keep component props interface in the component file](#keep-component-props-interface-in-the-component-file)
+  - [Testing](#testing)
+    - [Follow the `Arrange Act Assert` test pattern](#follow-the-arrange-act-assert-test-pattern)
+    - [Don't Rely on Snapshot Tests](#dont-rely-on-snapshot-tests)
+
 # React guidelines and best practices
 
 ## Naming and file conventions
@@ -808,6 +844,8 @@ const UserForm = ({ username, email }: UserFormProps) => {
   // rest of component logic
 }
 ```
+
+> For more general TypeScript guidelines check the [Typescript guidelines and best practices](./typescript.md)
 
 ## Testing
 
