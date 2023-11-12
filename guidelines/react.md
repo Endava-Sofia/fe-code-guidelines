@@ -1,44 +1,44 @@
 - [React guidelines and best practices](#react-guidelines-and-best-practices)
   - [Naming and file conventions](#naming-and-file-conventions)
-    - [Components Should Use `.jsx` or `.tsx` File Extension](#components-should-use-jsx-or-tsx-file-extension)
-    - [Custom Hooks Should Use `.js` or `.ts` File Extension](#custom-hooks-should-use-js-or-ts-file-extension)
-    - [Component File Names and Component Names Should Use PascalCase](#component-file-names-and-component-names-should-use-pascalcase)
+    - [Components should use `.jsx` or `.tsx` file extension](#components-should-use-jsx-or-tsx-file-extension)
+    - [Custom hooks should use `.js` or `.ts` file extension](#custom-hooks-should-use-js-or-ts-file-extension)
+    - [Component file names and component Names Should Use PascalCase](#component-file-names-and-component-names-should-use-pascalcase)
     - [Custom hooks files names and hook names should use camelCase](#component-names-and-custom-hooks-should-be-the-same-as-the-file-names)
-    - [Component Names and Custom Hooks Should Be The Same as the File Names](#component-names-and-custom-hooks-should-be-the-same-as-the-file-names)
-    - [Component Prop Names Should Use camelCase](#component-prop-names-should-use-camelcase)
-    - [Component Variables, Handlers, `useState` State and Setters Should use camelCase](#component-variables-handlers-usestate-state-and-setters-should-use-camelcase)
-  - [Code standards](#code-standards)
+    - [Component names and custom hooks should be the same as the file names](#component-names-and-custom-hooks-should-be-the-same-as-the-file-names)
+    - [Component prop names should use camelcase](#component-prop-names-should-use-camelcase)
+    - [Component variables, handlers, `usestate` state and setters should use camelCase](#component-variables-handlers-usestate-state-and-setters-should-use-camelcase)
+  - [Code Standards](#code-standards)
     - [Single component or hook per file](#single-component-or-hook-per-file)
-    - [Prefer Functional To Class Components](#prefer-functional-to-class-components)
+    - [Prefer functional to class components](#prefer-functional-to-class-components)
     - [Export components using named export](#export-components-using-named-export)
-    - [Always Destructure Props](#always-destructure-props)
-    - [Avoid Using DOM or Predefined Component Prop Names for Different Purposes](#avoid-using-dom-or-predefined-component-prop-names-for-different-purposes)
-    - [Favor Small, Single-purpose Components](#favor-small-single-purpose-components)
-    - [Separate Business Logic From UI](#separate-business-logic-from-ui)
-    - [Omit the Value of the Prop When It is Explicitly `true`](#omit-the-value-of-the-prop-when-it-is-explicitly-true)
-    - [Always Use Double Quotes (") for JSX Attributes](#always-use-double-quotes--for-jsx-attributes)
-    - [Self-close Components Without Children](#self-close-components-without-children)
-    - [Don't Extract Components Without Purpose](#dont-extract-components-without-purpose)
+    - [Always destructure props](#always-destructure-props)
+    - [Avoid using DOM or predefined component prop names for different purposes](#avoid-using-dom-or-predefined-component-prop-names-for-different-purposes)
+    - [Favor small, single-purpose components](#favor-small-single-purpose-components)
+    - [Separate business logic from UI](#separate-business-logic-from-ui)
+    - [Omit the value of the prop when it is explicitly `true`](#omit-the-value-of-the-prop-when-it-is-explicitly-true)
+    - [Always use double quotes (") for JSX attributes](#always-use-double-quotes--for-jsx-attributes)
+    - [Self-close components without children](#self-close-components-without-children)
+    - [Don't extract components without purpose](#dont-extract-components-without-a-purpose)
     - [Prefer the logical `&&` operator for conditional rendering, but make sure the left operand is always boolean](#prefer-the-logical--operator-for-conditional-rendering-but-make-sure-the-left-operand-is-always-boolean)
     - [Avoid nested ternary operators](#avoid-nested-ternary-operators)
     - [Extract repetitive markup](#extract-repetitive-markup)
-    - [Pass Objects Instead of Primitives](#pass-objects-instead-of-primitives)
-    - [Avoid Spreading Props](#avoid-spreading-props)
-    - [Favor Multiple Smaller `useEffect` Calls to a Single Big One](#favor-multiple-smaller-useeffect-calls-to-a-single-big-one)
-    - [Follow the Rules of Hooks](#follow-the-rules-of-hooks)
-    - [Pass All Hook Dependencies](#pass-all-hook-dependencies)
+    - [Pass objects instead of primitives](#pass-objects-instead-of-primitives)
+    - [Avoid spreading props](#avoid-spreading-props)
+    - [Favor multiple smaller `useeffect` calls to a single big one](#favor-multiple-smaller-useeffect-calls-to-a-single-big-one)
+    - [Follow the "Rules of Hooks"](#follow-the-rules-of-hooks)
+    - [Pass all hook dependencies](#pass-all-hook-dependencies)
   - [React with Typescript](#react-with-typescript)
-    - [Use the Component Name as a prefix followed by `Props` for all component interfaces](#use-the-component-name-as-a-prefix-followed-by-props-for-all-component-interfaces)
+    - [Use the component name as a prefix followed by `Props` for all component interfaces](#use-the-component-name-as-a-prefix-followed-by-props-for-all-component-interfaces)
     - [Keep component props interface in the component file](#keep-component-props-interface-in-the-component-file)
   - [Testing](#testing)
     - [Follow the `Arrange Act Assert` test pattern](#follow-the-arrange-act-assert-test-pattern)
-    - [Don't Rely on Snapshot Tests](#dont-rely-on-snapshot-tests)
+    - [Don't rely on snapshot tests](#dont-rely-on-snapshot-tests)
 
 # React guidelines and best practices
 
 ## Naming and file conventions
 
-### Components Should Use `.jsx` or `.tsx` File Extension
+### Components should use `.jsx` or `.tsx` file extension
 
 ```jsx
 // ❌
@@ -50,7 +50,7 @@ UserCard.jsx, UserProfile.tsx
 
 > This preference can be enforced with an existing ESLint rule in your project: [react/jsx-filename-extension](https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md)
 
-### Custom Hooks Should Use `.js` or `.ts` File Extension
+### Custom Hooks should use `.js` or `.ts` file extension
 
 ```jsx
 // ❌
@@ -60,7 +60,7 @@ useUserData.jsx, useFetch.tsx
 useUserData.js, useFetch.ts
 ```
 
-### Component File Names and Component Names Should Use PascalCase
+### Component file names and component names should use pascalCase
 
 ```jsx
 // ❌ Wrong use of camelCase and snake_case
@@ -81,7 +81,7 @@ UseUserData.js, use_user_data.js
 useUserData.js, useLocalStorage.ts
 ```
 
-### Component Names and Custom Hooks Should Be The Same as the File Names
+### Component names and custom hooks should be the same as the file names
 
 That way it becomes immediately clear to anyone looking at the file structure what components they can expect to find in which files.  It improves searchability within the codebase.
 Promotes consistency and aids in debugging, as stack traces will reference the component name, which, if it matches the filename, makes tracing the source of errors more straightforward.
@@ -102,7 +102,7 @@ const UserProfile = ({ user }) => {
 }
 ```
 
-### Component Prop Names Should Use camelCase
+### Component prop names should use camelCase
 
 ```jsx
 // ❌ Avoid using PascalCase or UPPERCASE
@@ -122,7 +122,7 @@ const UserProfile = ({ user }) => {
 
 > This preference can be enforced with an existing ESLint rule in your project using the [camelcase](https://eslint.org/docs/latest/rules/camelcase) rule.
 
-### Component Variables, Handlers, `useState` State and Setters Should use camelCase
+### Component variables, handlers, `usestate` state and setters should use camelCase
 
 ```jsx
 // ❌ Avoid using PascalCase or UPPERCASE
@@ -197,7 +197,7 @@ export const Layout = ({ children }) => (
 )
 ```
 
-### Prefer Functional To Class Components
+### Prefer functional to class components
 
 Functional components are favored over class components due to their simplicity and the introduction of Hooks, which allow for using state and lifecycle features without classes.
 They often result in cleaner, less verbose code and have advantages in performance due to reduced memory usage and better optimization potential.
@@ -267,7 +267,7 @@ import { UserProfile } from './UserProfile';
 
 > This preference can be enforced using the [eslint-plugin-import](https://github.com/import-js/eslint-plugin-import) ESLint plugin and the [import/no-default-export](https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-default-export.md) rule.
 
-### Always Destructure Props
+### Always destructure props
 
 Destructuring props in components enhances code readability by making it clear which properties are being used, reduces repetition by eliminating the need for the `props.` prefix, and simplifies the assignment of default values.
 It allows for a neater and more intuitive way to extract multiple properties from the props object passed to a function. Additionally, destructuring can make the code cleaner and more maintainable by providing a clear view of the component's API surface at a glance.
@@ -290,7 +290,7 @@ const Greeting = ({ name = 'User', role = 'Guest' }) => {
 
 > This preference can be enforced with an existing ESLint rule in your project: [react/destructuring-assignment](https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/destructuring-assignment.md)
 
-### Avoid Using DOM or Predefined Component Prop Names for Different Purposes
+### Avoid using dom or predefined component prop names for different purposes
 
 People expect props like style and className to mean one specific thing. Varying this API for a subset of your app makes the code less readable and less maintainable, and may cause bugs.
 
@@ -303,7 +303,7 @@ People expect props like style and className to mean one specific thing. Varying
 <MyComponent variant="fancy" />
 ```
 
-### Favor Small, Single-purpose Components
+### Favor small, single-purpose components
 
 Writing small, single-purpose components enhances modularity, making the codebase easier to maintain and scale as it grows. It also improves reusability, allowing developers to mix and match components like building blocks to create new features with less code.
 Small components facilitate easier testing and debugging since each component's functionality can be isolated and verified independently.
@@ -359,7 +359,7 @@ const AddFriendButton = ({ onAddFriend }) => (
 );
 ```
 
-### Separate Business Logic From UI
+### Separate business logic from ui
 
 React components often encapsulate both UI and business logic, which is appropriate for UI-related behavior but can lead to issues when handling domain-specific operations like API calls and user input validation.
 To manage these operations more efficiently and keep components clean, it's beneficial to extract such logic into custom hooks. Custom hooks integrate smoothly with a component's lifecycle and help in keeping component code focused on the UI by abstracting complex operations.
@@ -415,7 +415,7 @@ const UserProfile = ({ userId }) => {
 
 ```
 
-### Omit the Value of the Prop When It is Explicitly `true`
+### Omit the value of the prop when it is explicitly `true`
 
 Omitting the value of a prop when it's true simplifies the JSX markup, making it more concise, as the mere presence of the prop name indicates a true value. This shorthand mirrors the convention in HTML where boolean attributes can be written without a value.
 It also helps in reducing boilerplate code, allowing developers to write cleaner and more declarative components.
@@ -430,7 +430,7 @@ It also helps in reducing boilerplate code, allowing developers to write cleaner
 
 > This preference can be enforced with an existing ESLint rule in your project using the [react/jsx-boolean-value](https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-boolean-value.md) rule.
 
-### Always Use Double Quotes (") for JSX Attributes
+### Always use double quotes (") for JSX attributes
 
 Regular HTML attributes also typically use double quotes instead of single, so JSX attributes mirror this convention.
 
@@ -445,7 +445,7 @@ Regular HTML attributes also typically use double quotes instead of single, so J
 > This preference can be enforced with an existing ESLint rule in your project using the [@stylistic](https://eslint.style) plugin and the [@stylistic/js/jsx-quotes](https://eslint.style/rules/js/jsx-quotes) rule.
 > If you use ESLint v8.52.0 or lower, use [jsx-quotes](https://eslint.org/docs/latest/rules/jsx-quotes)
 
-### Self-close Components Without Children
+### Self-close components without children
 
 Self-closing components without children in JSX lead to cleaner code.
 It also aligns with HTML syntax for void elements, offering a visual cue for the component's role as a standalone entity without the need for additional closing tags.
@@ -460,7 +460,7 @@ It also aligns with HTML syntax for void elements, offering a visual cue for the
 
 > This preference can be enforced with an existing ESLint rule in your project using the [react/self-closing-comp](https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/self-closing-comp.md) rule.
 
-### Don't Extract Components Without Purpose
+### Don't extract components without a purpose
 
 Extracting components without a clear purpose can lead to unnecessary abstraction, making the codebase more difficult to navigate and understand due to excessive componentization.
 It can also negatively impact performance if the overhead of component creation doesn't provide a tangible benefit like reusability or separation of concerns.
@@ -617,7 +617,7 @@ const GENRES = [
 ]
 ```
 
-### Pass Objects Instead of Primitives
+### Pass objects instead of primitives
 
 Passing objects instead of primitives as props can encapsulate multiple related values into a single prop, reducing the overall number of props passed to a component and simplifying the component's API. This can make component usage and prop management more straightforward,
 as related values are grouped together, making the data flow easier to trace and understand. Additionally, it can improve component reusability and refactoring by treating prop values as structured data, which can adapt better to changes in the component's implementation or usage.
@@ -635,7 +635,7 @@ as related values are grouped together, making the data flow easier to trace and
 <UserProfile user={user}/>
 ```
 
-### Avoid Spreading Props
+### Avoid spreading props
 
 Spreading props in React can lead to unexpected behavior if components receive props that they shouldn't, such as invalid HTML attributes, wrong or modified handlers and data, making the code harder to debug and potentially causing security vulnerabilities.
 It also hides which props are being used, reducing the readability of the component and making it more difficult for future developers to understand which props are required or optional.
@@ -657,7 +657,7 @@ It also hides which props are being used, reducing the readability of the compon
 
 > This preference can be enforced with an existing ESLint rule in your project using the [react/jsx-props-no-spreading](https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-props-no-spreading.md) rule.
 
-### Favor Multiple Smaller `useEffect` Calls to a Single Big One
+### Favor multiple smaller `useeffect` calls to a single big one
 
 Using multiple smaller `useEffect` calls allows you to isolate different side effects that do not depend on each other, leading to better organization and separation of concerns.
 It also makes your component logic easier to follow and debug, as each effect is responsible for a specific behavior or set of related behaviors.
@@ -718,7 +718,7 @@ const UserProfile = ({ userId }) => {
 };
 ```
 
-### Follow the Rules of Hooks
+### Follow the "Rules of Hooks"
 
 The three rules of hooks are:
 
@@ -760,7 +760,7 @@ const MyComponent = ({ condition }) => {
 
 > This preference can be enforced with an existing ESLint rule in your project using the [eslint-plugin-react-hooks](https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks) plugin and the `react-hooks/rules-of-hooks` rule.
 
-### Pass All Hook Dependencies
+### Pass all hook dependencies
 
 Passing all dependencies to hooks like `useEffect`, `useMemo` and others, is crucial for ensuring that the hook correctly reflects the state and props it depends on, preventing bugs related to stale closures.
 It guarantees that the effect runs exactly when it should—after any of its dependencies change—aligning the component's behavior with React's design principles for hooks and state management.
@@ -804,7 +804,7 @@ const Timer = ({ someProp }) => {
 
 ## React with Typescript
 
-### Use the Component Name as a prefix followed by `Props` for all component interfaces
+### Use the component name as a prefix followed by `Props` for all component interfaces
 
 ```tsx
 // ❌ Not clear whether this is a props interface or not
@@ -876,7 +876,7 @@ test('increments counter', () => {
 });
 ```
 
-### Don't Rely on Snapshot Tests
+### Don't rely on snapshot tests
 
 Snapshot testing in React, while useful for catching unexpected changes, can often result in wasted time as developers may habitually update snapshots without thoroughly examining the changes.
 They are not a substitute for explicit assertions that clarify what is being tested and provide specific information about failures.
