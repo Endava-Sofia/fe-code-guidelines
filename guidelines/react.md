@@ -66,19 +66,6 @@ const UserProfile = ({ user }) => {
 }
 ```
 
-### Avoid Using DOM or Predefined Component Prop Names for Different Purposes
-
-People expect props like style and className to mean one specific thing. Varying this API for a subset of your app makes the code less readable and less maintainable, and may cause bugs.
-
-```jsx
-// ❌ Avoid using DOM component prop names
-<Header style="fancy" />
-<Header className="fancy" />
-
-// ✅ Use custom prop names
-<MyComponent variant="fancy" />
-```
-
 ### Component Prop Names Should Use camelCase
 
 ```jsx
@@ -97,7 +84,7 @@ People expect props like style and className to mean one specific thing. Varying
 />
 ```
 
-### Component Variables, Handlers, useState State and Setters Should use camelCase
+### Component Variables, Handlers, `useState` State and Setters Should use camelCase
 
 ```jsx
 // ❌ Avoid using PascalCase or UPPERCASE
@@ -174,7 +161,7 @@ export const Layout = ({ children }) => (
 
 ### Prefer Functional To Class Components
 
-Functional React components are favored over class components due to their simplicity and the introduction of Hooks, which allow for using state and lifecycle features without classes.
+Functional components are favored over class components due to their simplicity and the introduction of Hooks, which allow for using state and lifecycle features without classes.
 They often result in cleaner, less verbose code and have advantages in performance due to reduced memory usage and better optimization potential.
 
 ```jsx
@@ -213,7 +200,7 @@ const Welcome = () => {
 
 ### Export components using named export
 
-Using named exports allows for explicit and consistent importing of components, which can make the code easier to follow. It also facilitates tree-shaking in modern bundlers, allowing for a more efficient final bundle by potentially eliminating unused code.
+Using named exports allows for explicit and consistent importing of components, which can make the code easier to follow. It also facilitates tree-shaking in modern bundlers, allowing for an efficient final bundle by potentially eliminating unused code.
 
 ```jsx
 // ❌ Inconsistent component name
@@ -244,7 +231,7 @@ import { UserProfile } from './UserProfile';
 
 ### Always Destructure Props
 
-Destructuring props in React components enhances code readability by making it clear which properties are being used, reduces repetition by eliminating the need for the props. prefix, and simplifies the assignment of default values.
+Destructuring props in components enhances code readability by making it clear which properties are being used, reduces repetition by eliminating the need for the `props.` prefix, and simplifies the assignment of default values.
 It allows for a neater and more intuitive way to extract multiple properties from the props object passed to a function. Additionally, destructuring can make the code cleaner and more maintainable by providing a clear view of the component's API surface at a glance.
 
 ```jsx
@@ -265,9 +252,22 @@ const Greeting = ({ name = 'User', role = 'Guest' }) => {
 
 > This preference can be enforced with an existing ESLint rule in your project: [react/destructuring-assignment](https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/destructuring-assignment.md)
 
+### Avoid Using DOM or Predefined Component Prop Names for Different Purposes
+
+People expect props like style and className to mean one specific thing. Varying this API for a subset of your app makes the code less readable and less maintainable, and may cause bugs.
+
+```jsx
+// ❌ Avoid using DOM component prop names
+<Header style="fancy" />
+<Header className="fancy" />
+
+// ✅ Use custom prop names
+<MyComponent variant="fancy" />
+```
+
 ### Favor Small, Single-purpose Components
 
-Writing small, single-purpose React components enhances modularity, making the codebase easier to maintain and scale as it grows. It also improves reusability, allowing developers to mix and match components like building blocks to create new features with less code.
+Writing small, single-purpose components enhances modularity, making the codebase easier to maintain and scale as it grows. It also improves reusability, allowing developers to mix and match components like building blocks to create new features with less code.
 Small components facilitate easier testing and debugging since each component's functionality can be isolated and verified independently.
 
 ```jsx
@@ -529,12 +529,12 @@ const Filters = () => {
       <p>Book Genres</p>
       <ul>
         <li>
-          <div onClick={() => handleFilterClick("fiction")}>
+          <div onClick={() => handleFilterClick("filterFiction")}>
             Fiction
           </div>
         </li>
         <li>
-          <div onClick={() => handleFilterClick("classics")}>
+          <div onClick={() => handleFilterClick("filterClassics")}>
             Classics
           </div>
         </li>
@@ -569,20 +569,20 @@ const Filters = () => {
 
 const GENRES = [
   {
-    identifier: "fiction",
-    name: Fiction,
+    identifier: "filterFiction",
+    name: 'Fiction',
   },
   {
-    identifier: "classics",
-    name: Classics,
+    identifier: "filterClassics",
+    name: 'Classics',
   }
 ]
 ```
 
 ### Pass Objects Instead of Primitives
 
-Passing objects instead of primitives as props in React can encapsulate multiple related values into a single prop, reducing the overall number of props passed to a component and simplifying the component's API. This can make component usage and prop management more straightforward,
-as related values are grouped together, making the data flow easier to trace and understand. Additionally, it can improve component reusability and refactoring by treating prop values as structured data, which can adapt more flexibly to changes in the component's implementation or usage.
+Passing objects instead of primitives as props can encapsulate multiple related values into a single prop, reducing the overall number of props passed to a component and simplifying the component's API. This can make component usage and prop management more straightforward,
+as related values are grouped together, making the data flow easier to trace and understand. Additionally, it can improve component reusability and refactoring by treating prop values as structured data, which can adapt better to changes in the component's implementation or usage.
 
 ```jsx
 // ❌ Passsing every user value as a separate prop
@@ -599,7 +599,7 @@ as related values are grouped together, making the data flow easier to trace and
 
 ### Avoid Spreading Props
 
-Spreading props in React can lead to unexpected behavior if components receive props that they shouldn't, such as invalid HTML attributes or event handlers, making the code harder to debug and potentially causing security vulnerabilities.
+Spreading props in React can lead to unexpected behavior if components receive props that they shouldn't, such as invalid HTML attributes, wrong or modified handlers and data, making the code harder to debug and potentially causing security vulnerabilities.
 It also hides which props are being used, reducing the readability of the component and making it more difficult for future developers to understand which props are required or optional.
 
 ```jsx
@@ -619,9 +619,9 @@ It also hides which props are being used, reducing the readability of the compon
 
 > This preference can be enforced with an existing ESLint rule in your project using the [react/jsx-props-no-spreading](https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-props-no-spreading.md) rule.
 
-### Favor Multiple Smaller useEffect Calls to a Single Big One
+### Favor Multiple Smaller `useEffect` Calls to a Single Big One
 
-Using multiple smaller useEffect calls in React allows you to isolate different side effects that do not depend on each other, leading to better organization and separation of concerns.
+Using multiple smaller `useEffect` calls allows you to isolate different side effects that do not depend on each other, leading to better organization and separation of concerns.
 It also makes your component logic easier to follow and debug, as each effect is responsible for a specific behavior or set of related behaviors.
 Additionally, it can improve performance, as React can optimize re-running effects only when specific related props or state have changed, rather than re-running a larger effect with broader dependencies.
 
