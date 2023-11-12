@@ -2,7 +2,7 @@
 
 ## Naming and file conventions
 
-### Components Should Use `.jsx` or `.tsx` File Extensions
+### Components Should Use `.jsx` or `.tsx` File Extension
 
 ```jsx
 // ❌
@@ -13,6 +13,16 @@ UserCard.jsx, UserProfile.tsx
 ```
 
 > This preference can be enforced with an existing ESLint rule in your project: [react/jsx-filename-extension](https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md)
+
+### Custom Hooks Should Use `.js` or `.ts` File Extension
+
+```jsx
+// ❌
+useUserData.jsx, useFetch.tsx
+
+// ✅ 
+useUserData.js, useFetch.ts
+```
 
 ### Component File Names and Component Names Should Use PascalCase
 
