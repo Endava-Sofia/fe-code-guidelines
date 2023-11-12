@@ -127,6 +127,51 @@ const UserProfile = ({ user }) => {
 
 ## Code standards
 
+### Single component or hook per file
+
+Following the rule of a single component or hook per file simplifies understanding, testing, and maintaining the code by isolating individual components or hooks, making them easier to manage.
+That way, each file's purpose is clear and truly modular.
+
+```jsx
+// ❌ Multiple component in a single file
+
+// Layout.jsx
+import React from 'react';
+
+const Header = () => <header>Header Content</header>;
+
+const Footer = () => <footer>Footer Content</footer>;
+
+export const Layout = ({ children }) => (
+  <>
+    <Header />
+    {children}
+    <Footer />
+  </>
+)
+
+// ✅ Every component is in a separate file
+
+// Header.jsx
+export const Header = () => {
+  return <header>Header Content</header>;
+};
+
+// Footer.jsx
+export const Footer = () => {
+  return <footer>Footer Content</footer>;
+};
+
+// Layout.jsx
+export const Layout = ({ children }) => (
+  <>
+    <Header />
+    {children}
+    <Footer />
+  </>
+)
+```
+
 ### Prefer Functional To Class Components
 
 Functional React components are favored over class components due to their simplicity and the introduction of Hooks, which allow for using state and lifecycle features without classes.
