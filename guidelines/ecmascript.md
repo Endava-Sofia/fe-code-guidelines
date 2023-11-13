@@ -1,3 +1,23 @@
+### Table of Contents
+
+- [ECMAScript guidelines and best practices](#ecmascript-guidelines-and-best-practices)
+  - [Prefer using only `const` and `let` variables everywhere and not `var`](#prefer-using-only-const-and-let-variables-everywhere-and-not-var)
+  - [Prefer object spread everywhere](#prefer-object-spread-everywhere)
+  - [Prefer `array and object destructuring` for constants everywhere](#prefer-array-and-object-destructuring-for-constants-everywhere)
+  - [Prefer `optional chaining` everywhere](#prefer-optional-chaining-everywhere)
+  - [Prefer `nullish coalescing` everywhere](#prefer-nullish-coalescing-everywhere)
+  - [Prefer using `template literal` syntax for string concatenation and for multi-line string values](#prefer-using-template-literal-syntax-for-string-concatenation-and-for-multi-line-string-values)
+  - [Prefer using `includes` method for checking against multiple possible values](#prefer-using-includes-method-for-checking-against-multiple-possible-values)
+  - [Prefer `async/await` everywhere (no await in loops though)](#prefer-asyncawait-everywhere-no-await-in-loops-though)
+  - [Prefer object literal `property value shorthand` syntax](#prefer-object-literal-property-value-shorthand-syntax)
+  - [Prefer using the newest ES string, array and object methods](#prefer-using-the-newest-es-string-array-and-object-methods)
+  - [Prefer using `for...of` and `for...in` loops where appropriate](#prefer-using-forof-and-forin-loops-where-appropriate)
+  - [Prefer using `filter`, `map`, `reduce`, etc. but not `forEach`](#prefer-using-filter-map-reduce-etc-but-not-foreach)
+  - [Perefer using `arrow functions` everywhere where it’s applicable](#perefer-using-arrow-functions-everywhere-where-its-applicable)
+  - [Prefer using rest parameters](#prefer-using-rest-parameters)
+  - [Prefer using `Set`, `Map` and `Symbol` wherever these new data structures can be useful and simplify the code markup](#prefer-using-set-map-and-symbol-wherever-these-new-data-structures-can-be-useful-and-simplify-the-code-markup)
+  - [Prefer using `numeric literals`](#prefer-using-numeric-literals)
+
 # ECMAScript guidelines and best practices
 
 It is recommended to use all available ES6-ES13 syntax features in order to keep the JavaScript/Typescript code leaner, more readable, maintainable and in some cases more performant.

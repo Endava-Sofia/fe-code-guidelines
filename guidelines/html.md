@@ -1,3 +1,35 @@
+### Table of Contents
+
+- [HTML guidelines and best practices](#html-guidelines-and-best-practices)
+  - [Always Declare Document Type](#always-declare-document-type)
+  - [Use Lower Case Element Names](#use-lower-case-element-names)
+  - [Close All HTML Elements](#close-all-html-elements)
+  - [Close Empty HTML Elements](#close-empty-html-elements)
+  - [Use Lower Case Attribute Names](#use-lower-case-attribute-names)
+  - [Always Quote Attribute Values](#always-quote-attribute-values)
+  - [Always Specify alt, width, and height for Images](#always-specify-alt-width-and-height-for-images)
+  - [Spaces and Equal Signs](#spaces-and-equal-signs)
+  - [Avoid Long Code Lines](#avoid-long-code-lines)
+  - [Blank Lines and Indentation](#blank-lines-and-indentation)
+  - [Never Skip the "title" Element](#never-skip-the-title-element)
+  - [Omitting \<html\> and \<body\>?](#omitting-html-and-body)
+  - [Omitting "head"?](#omitting-head)
+  - [Close Empty HTML Elements?](#close-empty-html-elements-1)
+  - [Add the lang Attribute](#add-the-lang-attribute)
+  - [Meta Data](#meta-data)
+  - [Setting The Viewport](#setting-the-viewport)
+  - [Boolean attributes](#boolean-attributes)
+  - [Entity references](#entity-references)
+  - [HTML Comments](#html-comments)
+  - [HTML Line-Wrapping](#html-line-wrapping)
+  - [Use Lower Case File Names](#use-lower-case-file-names)
+  - [File Extensions](#file-extensions)
+  - [Default Filenames](#default-filenames)
+- [HTML Semantic Elements](#html-semantic-elements)
+  - [What are Semantic Elements?](#what-are-semantic-elements)
+  - [Semantic Elements in HTML](#semantic-elements-in-html)
+  - [ARIA](#aria)
+
 # HTML guidelines and best practices
 
 <br/>
@@ -514,7 +546,7 @@ Both will be treated as HTML by any web browser and web server.
 ## Default Filenames
 
 <br/>
-When a URL does not specify a filename at the end (like "https://www.w3schools.com"), the server just adds a default filename, such as "index.html", "index.htm", "default.html", or "default.htm".
+When a URL does not specify a filename at the end (like "<https://www.w3schools.com>"), the server just adds a default filename, such as "index.html", "index.htm", "default.html", or "default.htm".
 
 If your server is configured only with "index.html" as the default filename, your file must be named "index.html", and not "default.html".
 
