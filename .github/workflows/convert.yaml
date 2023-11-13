@@ -2,6 +2,7 @@ name: Convert
 
 on:
   push:
+    branches: [main]
 
 jobs:
   converttopdf:
