@@ -1,3 +1,12 @@
+### Table of Contents
+
+- [Principles](#principles)
+  - [KISS](#kiss)
+  - [YAGNI](#yagni)
+  - [DRY](#dry)
+  - [WET](#wet)
+  - [The boy scouting rule](#the-boy-scouting-rule)
+
 # Principles
 
 Software principles like KISS (Keep is simple, stupid) and DRY (Don't repeat yourself) are important to keep in mind when writing code. They are guidelines that can help you write maintainable and easy to read code.

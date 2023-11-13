@@ -1,3 +1,5 @@
+### Table of Contents
+
 - [React guidelines and best practices](#react-guidelines-and-best-practices)
   - [Naming and file conventions](#naming-and-file-conventions)
     - [Components should use `.jsx` or `.tsx` file extension](#components-should-use-jsx-or-tsx-file-extension)
