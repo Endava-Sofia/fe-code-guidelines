@@ -1,3 +1,5 @@
+## Table of Contents
+
 - [HTML guidelines and best practices](#html-guidelines-and-best-practices)
   - [Always Declare Document Type](#always-declare-document-type)
   - [Use Lower Case Element Names](#use-lower-case-element-names)

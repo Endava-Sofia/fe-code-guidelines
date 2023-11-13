@@ -1,3 +1,5 @@
+## Table of Contents
+
 - [Principles](#principles)
   - [KISS](#kiss)
   - [YAGNI](#yagni)

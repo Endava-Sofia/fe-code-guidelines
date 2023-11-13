@@ -1,3 +1,5 @@
+## Table of Contents
+
 - [CSS guidelines and best practices](#css-guidelines-and-best-practices)
   - [Choosing a format](#choosing-a-format)
     - [Measuring units (px, rem and em)](#measuring-units-px-rem-and-em)
