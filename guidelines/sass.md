@@ -38,7 +38,7 @@ Sometimes, it’s better to repeat a little to keep the code maintainable, rathe
 
 <br/>
 
-For the formatting rules, comments, spacing , measuring units etc. you can read in our css style guide. SASS syntax is almost the same as regular css syntax
+For the formatting rules, comments, spacing , measuring units etc. you can read in our css style guide. SCSS syntax is almost the same as regular css syntax
 
 ```scss
   // Good
@@ -537,9 +537,21 @@ Once you have named your breakpoints the way you want, you need a way to use the
 /// @param {String} $breakpoint - Breakpoint
 /// @requires $breakpoints
 @mixin respond-to($breakpoint) {
+  // @use "sass:map";
+  // return breakpoint or null if $map doesn’t have a value associated with $breakpoint
   $raw-query: map-get($breakpoints, $breakpoint);
 
   @if $raw-query {
+    /// @use "sass:string";
+    /// unquote Returns $raw-query as an unquoted string. This can produce strings that aren’t valid CSS, so use with caution.
+
+    /// @use 'sass:meta';
+    /// type-of Returns the type of $raw-query.
+
+    /// @use "sass:meta";
+    /// inspect($raw-query)
+    /// Returns a representation of any Sass value, not just those that can be represented in CSS. As such, its return value is not guaranteed to be valid CSS.
+
     $query: if(
       type-of($raw-query) == 'string',
       unquote($raw-query),
@@ -769,6 +781,7 @@ You should only extend selectors within the same media scope (@media directive).
 // Good
 @media print {
   .bar {
+    // using @at-root you can extend placeholder in media query
     @at-root (without: media) {
       @extend %foo;
     }
@@ -799,7 +812,6 @@ You should only extend selectors within the same media scope (@media directive).
 
 <br/>
 
-Link to this chapter: MixinsEdit this chapter on GitHub: Mixins
 Mixins are one of the most used features from the whole Sass language. They are the key to reusability and DRY components. And for good reason: mixins allow authors to define styles that can be reused throughout the stylesheet without needing to resort to non-semantic classes such as .float-left.
 
 They can contain full CSS rules and pretty much everything that is allowed anywhere in a Sass document. They can even take arguments, just like functions. Needless to say, the possibilities are endless.
@@ -811,15 +823,10 @@ They can contain full CSS rules and pretty much everything that is allowed anywh
 That being said, mixins are extremely useful and you should be using some. The rule of thumb is that if you happen to spot a group of CSS properties that always appear together for a reason (i.e. not a coincidence), you can put them in a mixin instead.
 
 ```scss
-/// Helper to clear inner floats
-/// @author Nicolas Gallagher
-/// @link http://nicolasgallagher.com/micro-clearfix-hack/ Micro Clearfix
-@mixin clearfix {
-  &::after {
-    content: '';
-    display: table;
-    clear: both;
-  }
+@mixin reset-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 ```
 
@@ -936,7 +943,7 @@ Then using this mixin should be very straightforward:
 }
 ```
 
-Please keep in mind this is a poor solution. For instance, it cannot deal with complex polyfills such as those required for Flexbox.
+Please keep in mind this is a poor solution. For instance, it cannot deal with complex polyfills such as those required for Flexbox. In that sense, using Autoprefixer would be a far better option.
 
 <br/>
 
@@ -1027,7 +1034,6 @@ When using conditional statements within a function to return a different result
 
 <br/>
 
-Link to this chapter: LoopsEdit this chapter on GitHub: Loops
 Because Sass provides complex data structures such as lists and maps, it is no surprise that it also gives a way for authors to iterate over those entities.
 
 However, the presence of loops usually implies moderately complex logic that probably does not belong to Sass. Before using a loop, make sure it makes sense and that it actually solves an issue.
