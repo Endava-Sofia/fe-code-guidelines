@@ -16,7 +16,7 @@ jobs:
         run: |-
           npm install -g md-to-pdf
           mkdir -p _output
-          cd test
+          cd guidelines
           echo; echo "Input Folder Listing"
           ls
           echo; echo "Generating PDF"
