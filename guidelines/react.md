@@ -32,6 +32,7 @@
   - [React with Typescript](#react-with-typescript)
     - [Use the component name as a prefix followed by `Props` for all component interfaces](#use-the-component-name-as-a-prefix-followed-by-props-for-all-component-interfaces)
     - [Keep component props interface in the component file](#keep-component-props-interface-in-the-component-file)
+    - [Keep enums and constants outside of components](#keep-enums-and-constants-outside-of-components)
   - [Testing](#testing)
     - [Follow the `Arrange Act Assert` test pattern](#follow-the-arrange-act-assert-test-pattern)
     - [Don't rely on snapshot tests](#dont-rely-on-snapshot-tests)
