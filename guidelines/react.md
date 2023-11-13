@@ -858,6 +858,43 @@ const UserForm = ({ username, email }: UserFormProps) => {
 }
 ```
 
+### Keep enums and constants outside of components
+
+Keeping static constants and enums outside components prevents them from being recreated on each render, which can lead to unnecessary memory usage and processing. It also promotes better organization of code by separating static definitions from component logic.
+
+```tsx
+
+// ❌ Color options defined inside the component, will be recreated every render
+const ColorPicker = ({ onSelectColor }) => {
+  const COLOR_OPTIONS = ['red', 'green', 'blue', 'yellow'] as const;
+
+  return (
+    <div>
+      {COLOR_OPTIONS.map((color) => (
+        <button key={color} onClick={() => onSelectColor(color)}>
+          {color}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+// ✅ Color options defined outside the component, only created once
+const COLOR_OPTIONS = ['red', 'green', 'blue', 'yellow'] as const;
+
+const ColorPicker = ({ onSelectColor }) => {
+  return (
+    <div>
+      {COLOR_OPTIONS.map((color) => (
+        <button key={color} onClick={() => onSelectColor(color)}>
+          {color}
+        </button>
+      ))}
+    </div>
+  );
+}
+```
+
 > For more general TypeScript guidelines check the [Typescript guidelines and best practices](./typescript.md)
 
 ## Testing
