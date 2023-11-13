@@ -5,10 +5,10 @@
     - [Components should use `.jsx` or `.tsx` file extension](#components-should-use-jsx-or-tsx-file-extension)
     - [Custom hooks should use `.js` or `.ts` file extension](#custom-hooks-should-use-js-or-ts-file-extension)
     - [Component file names and component Names Should Use PascalCase](#component-file-names-and-component-names-should-use-pascalcase)
-    - [Custom hooks files names and hook names should use camelCase](#component-names-and-custom-hooks-should-be-the-same-as-the-file-names)
-    - [Component names and custom hooks should be the same as the file names](#component-names-and-custom-hooks-should-be-the-same-as-the-file-names)
+    - [Custom hooks files names and hook names should use camelCase and should start with `use` prefix.](#custom-hooks-files-names-and-hook-names-should-use-camelcase-and-should-start-with-use-prefix)
+    - [Component and custom hook names should be the same as their file names](#component-and-custom-hook-names-should-be-the-same-as-their-file-names)
     - [Component prop names should use camelcase](#component-prop-names-should-use-camelcase)
-    - [Component variables, handlers, `usestate` state and setters should use camelCase](#component-variables-handlers-usestate-state-and-setters-should-use-camelcase)
+    - [Component variables, handlers, `useState` state and setters should use camelCase](#component-variables-handlers-usestate-state-and-setters-should-use-camelcase)
   - [Code Standards](#code-standards)
     - [Single component or hook per file](#single-component-or-hook-per-file)
     - [Prefer functional to class components](#prefer-functional-to-class-components)
@@ -26,7 +26,7 @@
     - [Extract repetitive markup](#extract-repetitive-markup)
     - [Pass objects instead of primitives](#pass-objects-instead-of-primitives)
     - [Avoid spreading props](#avoid-spreading-props)
-    - [Favor multiple smaller `useeffect` calls to a single big one](#favor-multiple-smaller-useeffect-calls-to-a-single-big-one)
+    - [Favor multiple smaller `useEffect` calls to a single big one](#favor-multiple-smaller-useeffect-calls-to-a-single-big-one)
     - [Follow the "Rules of Hooks"](#follow-the-rules-of-hooks)
     - [Pass all hook dependencies](#pass-all-hook-dependencies)
   - [React with Typescript](#react-with-typescript)
@@ -37,6 +37,9 @@
     - [Don't rely on snapshot tests](#dont-rely-on-snapshot-tests)
 
 # React guidelines and best practices
+
+React biggest strength is the library's flexibility it gives developers to structure their code in a way that makes sense to them. This flexibility can also be a weakness, as it can lead to inconsistent code and a lack of clear guidelines for structuring components and writing code.
+Having consistent code that follows established practices is fundamentally important for the maintainability of the codebase, the developer productivity and the overall quality of the application.
 
 ## Naming and file conventions
 
@@ -72,18 +75,25 @@ profilePicture.jsx, Profile_Picture.tsx
 ProfilePicture.jsx, ProfilePicture.tsx
 ```
 
-### Custom hooks files names and hook names should use camelCase
+### Custom hooks files names and hook names should use camelCase and should start with `use` prefix
+
+Hook file name and hook name should be the same and should start with `use` prefix, so they can be distinguished from other helper function in the project.
 
 ```jsx
 // ❌ Wrong use of PascalCase and snake_case
-UseUserData.js, use_user_data.js
+UseUserData.js, use_user_data.js, filterData.js
 
+// ❌ Hooks not starting with "use"
+tableFilters, applicationConfiguration
 
 // ✅ Using camelCase
 useUserData.js, useLocalStorage.ts
+
+// ✅ Hook start with "use"
+useTableFilters, useApplicationConfiguration
 ```
 
-### Component names and custom hooks should be the same as the file names
+### Component and custom hook names should be the same as their file names
 
 That way it becomes immediately clear to anyone looking at the file structure what components they can expect to find in which files.  It improves searchability within the codebase.
 Promotes consistency and aids in debugging, as stack traces will reference the component name, which, if it matches the filename, makes tracing the source of errors more straightforward.
@@ -124,7 +134,7 @@ const UserProfile = ({ user }) => {
 
 > This preference can be enforced with an existing ESLint rule in your project using the [camelcase](https://eslint.org/docs/latest/rules/camelcase) rule.
 
-### Component variables, handlers, `usestate` state and setters should use camelCase
+### Component variables, handlers, `useState` state and setters should use camelCase
 
 ```jsx
 // ❌ Avoid using PascalCase or UPPERCASE
@@ -272,7 +282,8 @@ import { UserProfile } from './UserProfile';
 ### Always destructure props
 
 Destructuring props in components enhances code readability by making it clear which properties are being used, reduces repetition by eliminating the need for the `props.` prefix, and simplifies the assignment of default values.
-It allows for a neater and more intuitive way to extract multiple properties from the props object passed to a function. Additionally, destructuring can make the code cleaner and more maintainable by providing a clear view of the component's API surface at a glance.
+It allows for a neater and more intuitive way to extract multiple properties from the props object passed to a function and allows the use of the  `...rest` pattern for grouping and passing through any additional props to child components.
+Additionally, destructuring can make the code cleaner and more maintainable by providing a clear view of the component's API surface at a glance.
 
 ```jsx
 // ❌ Repetitive props and verbose assignment of default values
@@ -292,7 +303,7 @@ const Greeting = ({ name = 'User', role = 'Guest' }) => {
 
 > This preference can be enforced with an existing ESLint rule in your project: [react/destructuring-assignment](https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/destructuring-assignment.md)
 
-### Avoid using dom or predefined component prop names for different purposes
+### Avoid using DOM or predefined component prop names for different purposes
 
 People expect props like style and className to mean one specific thing. Varying this API for a subset of your app makes the code less readable and less maintainable, and may cause bugs.
 
@@ -361,7 +372,7 @@ const AddFriendButton = ({ onAddFriend }) => (
 );
 ```
 
-### Separate business logic from ui
+### Separate business logic from UI
 
 React components often encapsulate both UI and business logic, which is appropriate for UI-related behavior but can lead to issues when handling domain-specific operations like API calls and user input validation.
 To manage these operations more efficiently and keep components clean, it's beneficial to extract such logic into custom hooks. Custom hooks integrate smoothly with a component's lifecycle and help in keeping component code focused on the UI by abstracting complex operations.
@@ -659,7 +670,7 @@ It also hides which props are being used, reducing the readability of the compon
 
 > This preference can be enforced with an existing ESLint rule in your project using the [react/jsx-props-no-spreading](https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-props-no-spreading.md) rule.
 
-### Favor multiple smaller `useeffect` calls to a single big one
+### Favor multiple smaller `useEffect` calls to a single big one
 
 Using multiple smaller `useEffect` calls allows you to isolate different side effects that do not depend on each other, leading to better organization and separation of concerns.
 It also makes your component logic easier to follow and debug, as each effect is responsible for a specific behavior or set of related behaviors.
@@ -765,7 +776,7 @@ const MyComponent = ({ condition }) => {
 ### Pass all hook dependencies
 
 Passing all dependencies to hooks like `useEffect`, `useMemo` and others, is crucial for ensuring that the hook correctly reflects the state and props it depends on, preventing bugs related to stale closures.
-It guarantees that the effect runs exactly when it should—after any of its dependencies change—aligning the component's behavior with React's design principles for hooks and state management.
+It guarantees that the effect runs exactly when it should - after any of its dependencies change - aligning the component's behavior with React's design principles for hooks and state management.
 
 ```jsx
 // ❌ the useEffect has a missing dependency, which could lead to bugs
