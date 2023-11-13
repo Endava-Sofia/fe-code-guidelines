@@ -2,7 +2,3 @@ body {
   font-family: sans-serif;
   color: black;
 }
-
-li:nth-child(n+2) {
-  margin-top: 2em;
-}
