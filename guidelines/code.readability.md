@@ -1,3 +1,5 @@
+### Table of Contents
+
 - [Code readability guidelines and best practices](#code-readability-guidelines-and-best-practices)
   - [11 principles of readable code](#11-principles-of-readable-code)
   - [Writing comments](#writing-comments)

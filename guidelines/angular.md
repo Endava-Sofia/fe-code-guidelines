@@ -1,3 +1,5 @@
+### Table of Contents
+
 # Angular guidelines and best practices
 
 ## Use the Angular CLI

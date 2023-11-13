@@ -60,12 +60,12 @@ The documents in this repo serve to help developers write consistent HTML/CSS/Sa
 
 ## Guidelines Table of Contents
 
-- [Angular](./guidelines/angular.md#angular-guidelines-and-best-practicesanchors)
-- [React](./guidelines/react.md#react-guidelines-and-best-practices)
-- [TypeScript](./guidelines/typescript.md#typescript-guidelines-and-best-practices)
-- [ECMAScript](./guidelines/ecmascript.md#ecmascript-guidelines-and-best-practices)
-- [Sass](./guidelines/sass.md#sass-guidelines-and-best-practices)
-- [CSS](./guidelines/css.md#css-guidelines-and-best-practices)
-- [HTML](./guidelines/html.md#html-guidelines-and-best-practices)
-- [Principles](./guidelines/principles.md#principles)
-- [Code Readability](./guidelines/code.readability.md#code-readability-guidelines-and-best-practices)
+- [Angular](./guidelines/angular.md#table-of-contents)
+- [React](./guidelines/react.md#table-of-contents)
+- [TypeScript](./guidelines/typescript.md#table-of-contents)
+- [ECMAScript](./guidelines/ecmascript.md#table-of-contents)
+- [Sass](./guidelines/sass.md#table-of-contents)
+- [CSS](./guidelines/css.md#table-of-contents)
+- [HTML](./guidelines/html.md#table-of-contents)
+- [Principles](./guidelines/principles.md#table-of-contents)
+- [Code Readability](./guidelines/code.readability.md#table-of-contents)
