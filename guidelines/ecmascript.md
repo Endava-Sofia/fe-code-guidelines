@@ -1,4 +1,4 @@
-## Table of Contents
+### Table of Contents
 
 - [ECMAScript guidelines and best practices](#ecmascript-guidelines-and-best-practices)
   - [Prefer using only `const` and `let` variables everywhere and not `var`](#prefer-using-only-const-and-let-variables-everywhere-and-not-var)

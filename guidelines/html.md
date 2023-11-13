@@ -1,4 +1,4 @@
-## Table of Contents
+### Table of Contents
 
 - [HTML guidelines and best practices](#html-guidelines-and-best-practices)
   - [Always Declare Document Type](#always-declare-document-type)

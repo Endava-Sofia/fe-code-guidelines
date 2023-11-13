@@ -1,4 +1,4 @@
-## Table of Contents
+### Table of Contents
 
 - [Typescript guidelines and best practices](#typescript-guidelines-and-best-practices)
   - [Naming Conventions](#naming-conventions)
