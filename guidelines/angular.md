@@ -72,12 +72,6 @@ It's recommended to keep the default order configuration because as it's based o
 
 ## Angular coding style guide
 
-### File structure conventions
-
-Some code examples display a file that has one or more similarly named companion files. For example, hero.component.ts and hero.component.html.
-
-The guideline uses the shortcut hero.component.ts|html|css|spec to represent those various files. Using this shortcut makes this guide's file structures easier to read and more terse.
-
 ### Single responsibility
 
 Apply the [single responsibility principle (SRP)](https://angular.dev/style-guide#single-responsibility) to all components, services, and other symbols. This helps make the application cleaner, easier to read and maintain, and more testable.
@@ -92,6 +86,7 @@ Angular has specific naming conventions for files and classes, depending on thei
 
 - File names and classes are usually prefixed with specific words depending on the type of the files - components, directives, services, guards, etc.
 - Names of classes and files follow different casing: files follow kebab-case naming while class names follow pascal-case naming.
+- Unit tests files share the same name as the files they are related to but prefixed with `.spec`
 
 Make sure you read the official [naming guide](https://angular.dev/style-guide#naming) to get familiar with the specifics and **consider using the CLI for generating files** to make sure that naming conventions are followed correctly.
 
