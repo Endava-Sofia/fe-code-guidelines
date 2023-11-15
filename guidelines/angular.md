@@ -84,7 +84,7 @@ Apply the [single responsibility principle (SRP)](https://angular.dev/style-guid
 
 Do define one thing, such as a service or component, per file. Also consider adding a single class per file, no matter if it is a regular class or a class for an Angular primitive. Consider limiting files to ~400 lines of code.
 
-It's strongly recommended to [use the Angular CLI](#use-the-angular-cli) for generating any type of files for your project because it already follows these guidelines.
+> It's strongly recommended to [use the Angular CLI](#use-the-angular-cli) for generating any type of files for your project because it already follows these guidelines.
 
 ### File and class naming
 
@@ -93,7 +93,7 @@ Angular has specific naming conventions for files and classes, depending on thei
 - File names and classes are usually prefixed with specific words depending on the type of the files - components, directives, services, guards, etc.
 - Names of classes and files follow different casing: files follow kebab-case naming while class names follow pascal-case naming.
 
-Make sure you read the official [naming guide](https://angular.dev/style-guide#naming) to get familiar with the specifics and consider using the CLI for generating files to make sure that naming conventions are followed correctly.
+Make sure you read the official [naming guide](https://angular.dev/style-guide#naming) to get familiar with the specifics and **consider using the CLI for generating files** to make sure that naming conventions are followed correctly.
 
 ### Selectors and prefixes
 
@@ -104,7 +104,7 @@ Components and directives in Angular have specific naming conventions for their 
 - [https://angular.dev/style-guide#directive-selectors](Directive Selectors)
 - [https://angular.dev/style-guide#directive-custom-prefix](Directive Custom Selectors)
 
-Here we still advice you to [use the Angular CLI](#use-the-angular-cli) to generate your components and directives to make sure that all conventions are followed out of the box.
+> Here we still advice you to [use the Angular CLI](#use-the-angular-cli) to generate your components and directives to make sure that all conventions are followed out of the box.
 
 ## Overall structural guidelines
 
