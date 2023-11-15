@@ -42,43 +42,15 @@ The benefit of using `ng update` is not only the handling of batch updates but i
 Speaking of migrating between major versions of Angular, always use [the official Angular Update Guide](https://update.angular.io) page. It offers a form where you select your current version, the target version you want to migrate to and some additional options.
 Then a list of actions is generated for you to guide you throughout the process but don't worry, most (if not all) actions are automatically handled by the update scripts.
 
-## Order attributes in HTML templates
-
-To make component bindings clean and easy to read it's a good idea to put them in a logical order. This can be enforced with the Angular ESLint rule [@angular-eslint/template/attributes-order](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/attributes-order.md).
-
-If you don't specify an order option it defaults to the following one:
-
-- Structural directive (e.g. `*ngIf`, `*ngFor`)
-- [Template reference](https://angular.dev/guide/templates/reference-variables)
-- Attribute bindings (native DOM attributes and regular string attribute bindings)
-- Input bindings (bindings to `@Input` properties of components/directtives)
-- Two-way bindings (e.g. `[(ngModel)]`)
-- Output bindings (bindings to `@Output` event emitters of components/directtives)
-
-Example:
-
-```html
-<app-test-component
-  *ngIf="someCondition"
-  #testComponent
-  someAttribute="plainStringValue"
-  [someInput]="someInputValue"
-  [(ngModel)]="modelBinding"
-  (click)="doSomething()"
-/>
-```
-
-It's recommended to keep the default order configuration because as it's based on the best practices.
-
-## Angular coding style guide
-
-### Single responsibility
+## Single responsibility
 
 Apply the [single responsibility principle (SRP)](https://angular.dev/style-guide#single-responsibility) to all components, services, and other symbols. This helps make the application cleaner, easier to read and maintain, and more testable.
 
 Do define one thing, such as a service or component, per file. Also consider adding a single class per file, no matter if it is a regular class or a class for an Angular primitive. Consider limiting files to ~400 lines of code.
 
 > It's strongly recommended to [use the Angular CLI](#use-the-angular-cli) for generating any type of files for your project because it already follows these guidelines.
+
+## Naming conventions
 
 ### File and class naming
 
@@ -224,6 +196,55 @@ export class HeroButtonComponent implements OnInit {
 }
 ```
 
+## Use TypeScript modifiers correctly
+
+### Data visibility modifiers
+
+TypeScript supports 3 types of [visibility modifiers for class members](https://www.typescriptlang.org/docs/handbook/2/classes.html#member-visibility) similar to most object-oriented languages. Since we use TypeScript in Angular, it's important to take advantage of this feature and use it accordingly.
+
+| Modifier | Usage in Angular |
+|----------|-------|
+| public | Use it for members which are supposed to be visible outside the class. For services these could be properties and methods which are supposed to be accessed by the injecting classes. For components these could be properties and methods which are meant to be accessed by a parent component. |
+| private | Use it for any members which are only supposed to be visible within the scope of the class. Keep in mind that *private members are not accessible in HTML templates of components.* |
+| protected | Protected members are only accessible in inherited classes. In the context of Angular, a good way of using protected modifiers is in component classes for members that you don't want to be visible outside but are used in HTML template bindings. |
+
+In TypeScript all members are public by default if you don't specify a modifier so pay attention to that when you don't expect some members to be public.
+
+### Read-only modifier
+
+In TypeScript you can prevent assignments of members by using the [Read-only modifier](https://www.typescriptlang.org/docs/handbook/2/classes.html#readonly). The `readonly` modifier can also have good implications specific to Angular:
+
+- Event emitters decorated with the `@Output` decorator. They are not supposed to be re-assigned and you can also enforce this with the ESLint rule [@angular-eslint/prefer-output-readonly](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/prefer-output-readonly.md)
+- Dependency injections in the constructor. They are also not supposed to be re-assigned (for unit tests use [appropriate ways of mocking services](https://angular.dev/guide/testing/services#testing-services-with-the-testbed)).
+
+## Order attributes in HTML templates
+
+To make component bindings clean and easy to read it's a good idea to put them in a logical order. This can be enforced with the Angular ESLint rule [@angular-eslint/template/attributes-order](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/attributes-order.md).
+
+If you don't specify an order option it defaults to the following one:
+
+- Structural directive (e.g. `*ngIf`, `*ngFor`)
+- [Template reference](https://angular.dev/guide/templates/reference-variables)
+- Attribute bindings (native DOM attributes and regular string attribute bindings)
+- Input bindings (bindings to `@Input` properties of components/directtives)
+- Two-way bindings (e.g. `[(ngModel)]`)
+- Output bindings (bindings to `@Output` event emitters of components/directtives)
+
+Example:
+
+```html
+<app-test-component
+  *ngIf="someCondition"
+  #testComponent
+  someAttribute="plainStringValue"
+  [someInput]="someInputValue"
+  [(ngModel)]="modelBinding"
+  (click)="doSomething()"
+/>
+```
+
+It's recommended to keep the default order configuration because as it's based on the best practices.
+
 ## Use RxJS properly
 
 While learning Angular you eventually find out that it uses RxJS for many of its APIs and the framework embraces RxJS Observables for state management and reactivity. That's why it's important to have a good understanding of RxJS and follow some good practices when using observables in Angular to avoid potential issues.
@@ -289,24 +310,3 @@ This frees up the main JavaScript bundle from code which is not necessary on ini
 - [Lazy load your routes](https://angular.dev/guide/ngmodules/lazy-loading#lazy-loading-basics) to ensure the JS modules tied to a given route/feature are only downloaded when they are first needed.
 - When route-based lazy loading is not possible (for example - when you want to lazy load a component for a pop-up), use standalone components with dynamic imports and attach them to the view.
 - Import modules or standalone classes only where they are needed so the builder can separate them from the main JS chunk. Importing modules directly to the main App module (or App component for standalone apps), will surely bundle them inside the main JS chunk no matter where you use them.
-
-## Use TypeScript modifiers correctly
-
-### Data visibility modifiers
-
-TypeScript supports 3 types of [visibility modifiers for class members](https://www.typescriptlang.org/docs/handbook/2/classes.html#member-visibility) similar to most object-oriented languages. Since we use TypeScript in Angular, it's important to take advantage of this feature and use it accordingly.
-
-| Modifier | Usage in Angular |
-|----------|-------|
-| public | Use it for members which are supposed to be visible outside the class. For services these could be properties and methods which are supposed to be accessed by the injecting classes. For components these could be properties and methods which are meant to be accessed by a parent component. |
-| private | Use it for any members which are only supposed to be visible within the scope of the class. Keep in mind that *private members are not accessible in HTML templates of components.* |
-| protected | Protected members are only accessible in inherited classes. In the context of Angular, a good way of using protected modifiers is in component classes for members that you don't want to be visible outside but are used in HTML template bindings. |
-
-In TypeScript all members are public by default if you don't specify a modifier so pay attention to that when you don't expect some members to be public.
-
-### Read-only modifier
-
-In TypeScript you can prevent assignments of members by using the [Read-only modifier](https://www.typescriptlang.org/docs/handbook/2/classes.html#readonly). The `readonly` modifier can also have good implications specific to Angular:
-
-- Event emitters decorated with the `@Output` decorator. They are not supposed to be re-assigned and you can also enforce this with the ESLint rule [@angular-eslint/prefer-output-readonly](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/prefer-output-readonly.md)
-- Dependency injections in the constructor. They are also not supposed to be re-assigned (for unit tests use [appropriate ways of mocking services](https://angular.dev/guide/testing/services#testing-services-with-the-testbed)).
