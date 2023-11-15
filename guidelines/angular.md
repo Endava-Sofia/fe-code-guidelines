@@ -21,12 +21,12 @@
   - [Read-only modifier](#read-only-modifier)
   - [Order attributes in HTML templates](#order-attributes-in-html-templates)
 - [Use RxJS properly](#use-rxjs-properly)
-- [Don't forget to track and unsubscribe](#Don't-forget-to-track-and-unsubscribe)
-- [Combine observables with the use of operators instead of nesting subscriptions](#combine-observables-with-the-use-of-operators-instead-of-nesting-subscriptions)
+  - [Don't forget to track and unsubscribe](#dont-forget-to-track-and-unsubscribe)
+  - [Combine observables with the use of operators instead of nesting subscriptions](#combine-observables-with-the-use-of-operators-instead-of-nesting-subscriptions)
   - [The RxJS Operator Decision Tree](#the-rxjs-operator-decision-tree)
 - [Оptimizations](#Оptimizations)
   - [Change detection and runtime optimizations](#change-detection-and-runtime-optimizations)
-- [Bundle size optimizations](#bundle-size-optimizations)
+  - [Bundle size optimizations](#bundle-size-optimizations)
 
 # Angular guidelines and best practices
 
@@ -305,7 +305,7 @@ observable1.pipe(
 ).subscribe((res2) => foo(res2))
 ```
 
-## The RxJS Operator Decision Tree
+### The RxJS Operator Decision Tree
 
 RxJS offers a quite large set of functions and sometimes even experienced developers can get lost and forget what to use in a given situation or run into an entirely new case where a new approach is needed. This is where the [Operator Decision Tree](https://rxjs.dev/operator-decision-tree) comes to help.
 This is a page from the official RxJS website, and it comes with a friendly wizard form. The form has 2 or more steps (depending on the path you choose) and on each step you must select the option that best describe your case and at the end you'll be provided with an answer that links you to the exact RxJS function(S) you'll need.
