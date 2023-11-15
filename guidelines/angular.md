@@ -1,5 +1,33 @@
 ### Table of Contents
 
+[Angular guidelines and best practices](#angular-guidelines-and-best-practices)
+
+- [Use the Angular CLI](#use-the-angular-cli)
+  - [Example for component generation](#example-for-component-generation)
+- [Keeping Angular up to date](#keeping-angular-up-to-date)
+- [Single responsibility](#single-responsibility)
+- [Naming conventions](#naming-conventions)
+  - [File and class naming](#file-and-class-naming)
+  - [Selectors and prefixes](#selectors-and-prefixes)
+- [Overall structural guidelines](#overall-structural-guidelines)
+  - [Folders-by-feature structure](#folders-by-feature-structure)
+- [Components](#components)
+- [Directives](Directives)
+- [Services](Services)
+- [Lifecycle hooks](#lifecycle-hooks)
+  - [Implement lifecycle hook interfaces](#implement-lifecycle-hook-interfaces)
+- [Use TypeScript modifiers correctly](#use-typescript-modifiers-correctly)
+  - [Data visibility modifiers](#data-visibility-modifiers)
+  - [Read-only modifier](#read-only-modifier)
+  - [Order attributes in HTML templates](#order-attributes-in-html-templates)
+- [Use RxJS properly](#use-rxjs-properly)
+- [Don't forget to track and unsubscribe](#Don't-forget-to-track-and-unsubscribe)
+- [Combine observables with the use of operators instead of nesting subscriptions](#combine-observables-with-the-use-of-operators-instead-of-nesting-subscriptions)
+  - [The RxJS Operator Decision Tree](#the-rxjs-operator-decision-tree)
+- [Оptimizations](#Оptimizations)
+  - [Change detection and runtime optimizations](#change-detection-and-runtime-optimizations)
+- [Bundle size optimizations](#bundle-size-optimizations)
+
 # Angular guidelines and best practices
 
 ## Use the Angular CLI
